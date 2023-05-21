@@ -24,9 +24,9 @@ public class RunTestsService implements ArgumentsProvider {
         //потом так же добавить тут все тестовые классы
         switch (c.getSimpleName()) {
             //case "TriangleImpl": {
-              case "PersonImpl": {
-              currTestClass = PersonTest.class;
-            //    currTestClass = MyClass5Test.class;
+            case "PersonImpl": {
+                currTestClass = PersonTest.class;
+                //    currTestClass = MyClass5Test.class;
                 break;
             }
             default: {
@@ -58,15 +58,10 @@ public class RunTestsService implements ArgumentsProvider {
             needTestMethods = getAllTestMethodFromClass(currTestClass.getDeclaredMethods(), method);
 
             if (!needTestMethods.isEmpty()) {
-                switch (method.getName()) {
-                    case "changeFirstName", "changeLastName" ->
-                            currMethodFromClass = currClass.getMethod(method.getName(), int.class, String.class);
-                    case "getFullName", "getFullNameWithHistory" ->
-                            currMethodFromClass = currClass.getMethod(method.getName(), int.class);
-                    case "getHistory" ->
-                            currMethodFromClass = currClass.getMethod(method.getName(), List.class, Map.class);
-                    default -> currMethodFromClass = currClass.getMethod(method.getName());
-                }
+
+                currMethodFromClass = method;
+                //currClass.getMethod(method.getName(), Integer.class, String.class);
+
 
                 //currMethodFromClass = currClass.getMethod(method.getName());
                 //вызов тестов для текущего метода
