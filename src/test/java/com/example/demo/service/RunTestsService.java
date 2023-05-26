@@ -79,7 +79,8 @@ public class RunTestsService implements ArgumentsProvider {
     public List<Method> getAllTestMethodFromClass(Method[] allTestMethods, Method classMethod) {
         List<Method> needTestMethods = new ArrayList<>();
         for (Method test : allTestMethods) {
-            if (test.getName().startsWith(classMethod.getName())) {
+            String nameTestMethodShort = test.getName().substring(0, test.getName().indexOf("Test"));
+            if (nameTestMethodShort.equals(classMethod.getName())) {
                 needTestMethods.add(test);
             }
         }

@@ -42,7 +42,7 @@ public class PersonTest {
     //когда пытаемся два раза за год изменить имя
     @ParameterizedTest
     @ArgumentsSource(RunTestsService.class)
-    void changeFirstNameException(Method testMethod, Class<?> c) throws Exception {
+    void changeFirstNameTestException(Method testMethod, Class<?> c) throws Exception {
         Map<Integer, String> firstNameTest = new TreeMap<>();
         Map<Integer, String> lastNameTest = new TreeMap<>();
 
@@ -60,7 +60,7 @@ public class PersonTest {
     //changeLastName, добавляем в историю изменение фамилии
     @ParameterizedTest
     @ArgumentsSource(RunTestsService.class)
-    void changeLastNameException(Method testMethod, Class<?> c) throws Exception {
+    void changeLastNameTestException(Method testMethod, Class<?> c) throws Exception {
         Map<Integer, String> firstNameTest = new TreeMap<>();
         Map<Integer, String> lastNameTest = new TreeMap<>();
 
@@ -78,11 +78,11 @@ public class PersonTest {
 
     }
 
-    //    //changeLastName, добавляем в историю изменение фамилии, и выбрасываем исключение,
-//    //когда пытаемся два раза за год изменить фамилию
+    //changeLastName, добавляем в историю изменение фамилии, и выбрасываем исключение,
+    //когда пытаемся два раза за год изменить фамилию
     @ParameterizedTest
     @ArgumentsSource(RunTestsService.class)
-    void changeLastName(Method testMethod, Class<?> c) throws Exception {
+    void changeLastNameTest(Method testMethod, Class<?> c) throws Exception {
         String[] s = {"Li", "Olonech", "Lobova", "Kotova"};
 
         Map<Integer, String> firstNameTest = new TreeMap<>();
@@ -99,103 +99,219 @@ public class PersonTest {
 
         assertArrayEquals(s, res.toArray());
     }
-//
-//    //getFullName, запрашиваем имя и фамилию, на год, когда до него было информации
-//    @ParameterizedTest
-//    @ArgumentsSource(RunTestsService.class)
-//    void getFullNameIncognito(Method testMethod, Class<?> c) throws Exception {
-////        Assertions.assertEquals("Incognito", b.getFullName(1990));
-//        assertEquals(1, 1);
-//    }
-//
-//    //getFullName, запрашиваем имя и фамилию, на год, когда была информация только о фамилии
-//    @ParameterizedTest
-//    @ArgumentsSource(RunTestsService.class)
-//    void getFullNameIncognitoFirstName(Method testMethod, Class<?> c) {
-////        Assertions.assertEquals("Li with unknown first name", b.getFullName(1992));
-//        assertEquals(1, 1);
-//    }
-//
-//    //getFullName, запрашиваем имя и фамилию, на год, когда была информация о смене фамилии несколько раз
-//    @ParameterizedTest
-//    @ArgumentsSource(RunTestsService.class)
-//    void getFullNameIncognitoFirstName1(Method testMethod, Class<?> c) {
-////        Assertions.assertEquals("Maslenik with unknown first name", b.getFullName(1994));
-//        assertEquals(0, 1);
-//    }
-//
-//    //getFullName, запрашиваем имя и фамилию, на год, когда была информация только об имени
-//    @ParameterizedTest
-//    @ArgumentsSource(RunTestsService.class)
-//    void getFullNameIncognitoLastName(Method testMethod, Class<?> c) throws Exception {
-////        a.changeFirstName(2000,"Nastya");
-////        a.changeFirstName(2010,"Olya");
-////        a.changeLastName(2001,"Lobova");
-////        Assertions.assertEquals("Nastya with unknown last name", a.getFullName(2000));
-//        assertEquals(1, 1);
-//    }
-//
-//    //getFullName, запрашиваем имя и фамилию, на год, когда была информация о смене имени несколько раз
-//    @ParameterizedTest
-//    @ArgumentsSource(RunTestsService.class)
-//    void getFullNameIncognitoLastName1(Method testMethod, Class<?> c) throws Exception {
-////        a.changeFirstName(2020,"Masha");
-////        a.changeFirstName(2000,"Nastya");
-////        a.changeFirstName(2010,"Olya");
-////        a.changeLastName(2012,"Lobova");
-////        Assertions.assertEquals("Olya with unknown last name", a.getFullName(2011));
-//        assertEquals(1, 1);
-//    }
-//
-//    //getFullName, запрашиваем имя и фамилию, на год, когда была информация о смене имени несколько раз
-//    @ParameterizedTest
-//    @ArgumentsSource(RunTestsService.class)
-//    void getFullName(Method testMethod, Class<?> c) throws Exception {
-////        Assertions.assertEquals("Marina Loboda", b.getFullName(1996));
-//        assertEquals(1, 1);
-//    }
-//
-//    //getFullNameWithHistory, запрашиваем полную информацию об имени и фамилии на год, до которого не было информации
-//    @ParameterizedTest
-//    @ArgumentsSource(RunTestsService.class)
-//    void getFullNameWithHistoryIncognito(Method testMethod, Class<?> c){
-////        Assertions.assertEquals("Incognito", b.getFullNameWithHistory(1990));
-//        assertEquals(1, 1);
-//    }
-//
-//    //getFullNameWithHistory, запрашиваем полную информацию об имени и фамилии на год,
-//    // до которого была только 1 смена фамилии
-//    @ParameterizedTest
-//    @ArgumentsSource(RunTestsService.class)
-//    void getFullNameWithHistoryLastNames(Method testMethod, Class<?> c){
-////        Assertions.assertEquals("Li with unknown first name", b.getFullNameWithHistory(1992));
-//        assertEquals(1, 1);
-//    }
-//
-//    //getFullNameWithHistory, запрашиваем полную информацию об имени и фамилии на год,
-//    // до которого была только 2 изменения фамилии
-//    @ParameterizedTest
-//    @ArgumentsSource(RunTestsService.class)
-//    void getFullNameWithHistoryLastNames1(Method testMethod, Class<?> c){
-////        Assertions.assertEquals("Maslenik(Li) with unknown first name", b.getFullNameWithHistory(1993));
-//        assertEquals(1, 1);
-//    }
-//
-//    //getFullNameWithHistory, запрашиваем полную информацию об имени и фамилии на год,
-//    // до которого была несколько изменений фамилии
-//    @ParameterizedTest
-//    @ArgumentsSource(RunTestsService.class)
-//    void getFullNameWithHistoryLastNames2(Method testMethod, Class<?> c){
-////        Assertions.assertEquals("Loboda(Maslenik, Li) with unknown first name", b.getFullNameWithHistory(1995));
-//        assertEquals(1, 1);
-//    }
+
+    //getFullName, запрашиваем имя и фамилию, на год, когда до него было информации
+    @ParameterizedTest
+    @ArgumentsSource(RunTestsService.class)
+    void getFullNameTestIncognito(Method testMethod, Class<?> c) throws Exception {
+
+        Map<Integer, String> firstNameTest = new TreeMap<>();
+        firstNameTest.put(2020, "Masha");
+        firstNameTest.put(2010, "Olya");
+        firstNameTest.put(2012, "Kate");
+        Map<Integer, String> lastNameTest = new TreeMap<>();
+        lastNameTest.put(2023, "Lobova");
+        lastNameTest.put(2001, "Ivanova");
+
+        Class[] catClassParams = {Map.class, Map.class};
+        Object tr = c.getConstructor(catClassParams).newInstance(firstNameTest, lastNameTest);
+
+        String res = testMethod.invoke(tr, 2000).toString();
+        assertEquals("Incognito", res);
+    }
+
+
+    //getFullName, запрашиваем имя и фамилию, на год, когда была информация только о фамилии
+    @ParameterizedTest
+    @ArgumentsSource(RunTestsService.class)
+    void getFullNameTestIncognitoFirstName(Method testMethod, Class<?> c) throws Exception {
+
+        Map<Integer, String> firstNameTest = new TreeMap<>();
+        firstNameTest.put(2020, "Masha");
+        firstNameTest.put(2010, "Olya");
+        firstNameTest.put(2012, "Kate");
+        Map<Integer, String> lastNameTest = new TreeMap<>();
+        lastNameTest.put(2023, "Lobova");
+        lastNameTest.put(2001, "Ivanova");
+
+        Class[] catClassParams = {Map.class, Map.class};
+        Object tr = c.getConstructor(catClassParams).newInstance(firstNameTest, lastNameTest);
+
+        String res = testMethod.invoke(tr, 2002).toString();
+        assertEquals("Ivanova with unknown first name", res);
+    }
+
+    //getFullName, запрашиваем имя и фамилию, на год, когда была информация о смене фамилии несколько раз
+    @ParameterizedTest
+    @ArgumentsSource(RunTestsService.class)
+    void getFullNameTestIncognitoFirstName1(Method testMethod, Class<?> c) throws Exception {
+        Map<Integer, String> firstNameTest = new TreeMap<>();
+        firstNameTest.put(2020, "Masha");
+        firstNameTest.put(2011, "Olya");
+        firstNameTest.put(2012, "Kate");
+        Map<Integer, String> lastNameTest = new TreeMap<>();
+        lastNameTest.put(2023, "Lobova");
+        lastNameTest.put(2001, "Ivanova");
+        lastNameTest.put(2010, "Maslenik");
+
+        Class[] catClassParams = {Map.class, Map.class};
+        Object tr = c.getConstructor(catClassParams).newInstance(firstNameTest, lastNameTest);
+
+        String res = testMethod.invoke(tr, 2010).toString();
+        assertEquals("Maslenik with unknown first name", res);
+    }
+
+    //getFullName, запрашиваем имя и фамилию, на год, когда была информация только об имени
+    @ParameterizedTest
+    @ArgumentsSource(RunTestsService.class)
+    void getFullNameTestIncognitoLastName(Method testMethod, Class<?> c) throws Exception {
+        Map<Integer, String> firstNameTest = new TreeMap<>();
+        firstNameTest.put(2020, "Masha");
+        firstNameTest.put(1999, "Olya");
+        firstNameTest.put(2012, "Kate");
+        Map<Integer, String> lastNameTest = new TreeMap<>();
+        lastNameTest.put(2023, "Lobova");
+        lastNameTest.put(2001, "Ivanova");
+        lastNameTest.put(2010, "Maslenik");
+
+        Class[] catClassParams = {Map.class, Map.class};
+        Object tr = c.getConstructor(catClassParams).newInstance(firstNameTest, lastNameTest);
+
+        String res = testMethod.invoke(tr, 2000).toString();
+        assertEquals("Olya with unknown last name", res);
+    }
+
+    //getFullName, запрашиваем имя и фамилию, на год, когда была информация о смене имени несколько раз
+    @ParameterizedTest
+    @ArgumentsSource(RunTestsService.class)
+    void getFullNameTestIncognitoLastName1(Method testMethod, Class<?> c) throws Exception {
+        Map<Integer, String> firstNameTest = new TreeMap<>();
+        firstNameTest.put(2020, "Masha");
+        firstNameTest.put(1999, "Olya");
+        firstNameTest.put(2012, "Kate");
+        firstNameTest.put(1997, "Nastya");
+        Map<Integer, String> lastNameTest = new TreeMap<>();
+        lastNameTest.put(2023, "Lobova");
+        lastNameTest.put(2001, "Ivanova");
+        lastNameTest.put(2010, "Maslenik");
+
+        Class[] catClassParams = {Map.class, Map.class};
+        Object tr = c.getConstructor(catClassParams).newInstance(firstNameTest, lastNameTest);
+
+        String res = testMethod.invoke(tr, 2000).toString();
+        assertEquals("Olya with unknown last name", res);
+    }
+
+    //getFullName, запрашиваем имя и фамилию, на год, когда была информация о смене имени несколько раз
+    @ParameterizedTest
+    @ArgumentsSource(RunTestsService.class)
+    void getFullNameTest(Method testMethod, Class<?> c) throws Exception {
+        Map<Integer, String> firstNameTest = new TreeMap<>();
+        firstNameTest.put(2020, "Masha");
+        firstNameTest.put(1999, "Olya");
+        firstNameTest.put(2012, "Kate");
+        firstNameTest.put(1997, "Nastya");
+        Map<Integer, String> lastNameTest = new TreeMap<>();
+        lastNameTest.put(2023, "Lobova");
+        lastNameTest.put(2001, "Ivanova");
+        lastNameTest.put(2010, "Maslenik");
+
+        Class[] catClassParams = {Map.class, Map.class};
+        Object tr = c.getConstructor(catClassParams).newInstance(firstNameTest, lastNameTest);
+
+        String res = testMethod.invoke(tr, 2013).toString();
+        assertEquals("Kate Maslenik", res);
+    }
+
+    //getFullNameWithHistory, запрашиваем полную информацию об имени и фамилии на год, до которого не было информации
+    @ParameterizedTest
+    @ArgumentsSource(RunTestsService.class)
+    void getFullNameWithHistoryTestIncognito(Method testMethod, Class<?> c) throws Exception {
+        Map<Integer, String> firstNameTest = new TreeMap<>();
+        firstNameTest.put(2020, "Masha");
+        firstNameTest.put(1999, "Olya");
+        firstNameTest.put(2012, "Kate");
+        firstNameTest.put(1997, "Nastya");
+        Map<Integer, String> lastNameTest = new TreeMap<>();
+        lastNameTest.put(2023, "Lobova");
+        lastNameTest.put(2001, "Ivanova");
+        lastNameTest.put(2010, "Maslenik");
+
+        Class[] catClassParams = {Map.class, Map.class};
+        Object tr = c.getConstructor(catClassParams).newInstance(firstNameTest, lastNameTest);
+
+        String res = testMethod.invoke(tr, 1995).toString();
+        assertEquals("Incognito", res);
+    }
+
+    //getFullNameWithHistory, запрашиваем полную информацию об имени и фамилии на год,
+    // до которого была только 1 смена фамилии
+    @ParameterizedTest
+    @ArgumentsSource(RunTestsService.class)
+    void getFullNameWithHistoryTestLastNames(Method testMethod, Class<?> c) throws Exception {
+        Map<Integer, String> firstNameTest = new TreeMap<>();
+        firstNameTest.put(2020, "Masha");
+        firstNameTest.put(1999, "Olya");
+        firstNameTest.put(2012, "Kate");
+        firstNameTest.put(1997, "Nastya");
+        Map<Integer, String> lastNameTest = new TreeMap<>();
+        lastNameTest.put(2023, "Lobova");
+        lastNameTest.put(1990, "Li");
+        lastNameTest.put(2010, "Maslenik");
+
+        Class[] catClassParams = {Map.class, Map.class};
+        Object tr = c.getConstructor(catClassParams).newInstance(firstNameTest, lastNameTest);
+
+        String res = testMethod.invoke(tr, 1992).toString();
+        assertEquals("Li with unknown first name", res);
+    }
+
+    //getFullNameWithHistory, запрашиваем полную информацию об имени и фамилии на год,
+    // до которого была только 2 изменения фамилии
+    @ParameterizedTest
+    @ArgumentsSource(RunTestsService.class)
+    void getFullNameWithHistoryTestLastNames1(Method testMethod, Class<?> c) throws Exception {
+        Map<Integer, String> firstNameTest = new TreeMap<>();
+        firstNameTest.put(2020, "Masha");
+        firstNameTest.put(2012, "Kate");
+        firstNameTest.put(2023, "Nastya");
+        Map<Integer, String> lastNameTest = new TreeMap<>();
+        lastNameTest.put(2023, "Lobova");
+        lastNameTest.put(1990, "Li");
+        lastNameTest.put(2010, "Maslenik");
+
+        Class[] catClassParams = {Map.class, Map.class};
+        Object tr = c.getConstructor(catClassParams).newInstance(firstNameTest, lastNameTest);
+
+        String res = testMethod.invoke(tr, 2010).toString();
+        assertEquals("Maslenik(Li) with unknown first name", res);
+    }
+
+    //getFullNameWithHistory, запрашиваем полную информацию об имени и фамилии на год,
+    // до которого была несколько изменений фамилии
+    @ParameterizedTest
+    @ArgumentsSource(RunTestsService.class)
+    void getFullNameWithHistoryTestLastNames2(Method testMethod, Class<?> c) throws Exception {
+        Map<Integer, String> firstNameTest = new TreeMap<>();
+        firstNameTest.put(2020, "Masha");
+        firstNameTest.put(2022, "Nastya");
+        Map<Integer, String> lastNameTest = new TreeMap<>();
+        lastNameTest.put(2015, "Loboda");
+        lastNameTest.put(1990, "Li");
+        lastNameTest.put(2010, "Maslenik");
+
+        Class[] catClassParams = {Map.class, Map.class};
+        Object tr = c.getConstructor(catClassParams).newInstance(firstNameTest, lastNameTest);
+
+        String res = testMethod.invoke(tr, 2016).toString();
+        assertEquals("Loboda(Maslenik, Li) with unknown first name", res);
+    }
 
     //    //getFullNameWithHistory, запрашиваем полную информацию об имени и фамилии на год,
 //    // до которого была только 1 смена имени
     @ParameterizedTest
     @ArgumentsSource(RunTestsService.class)
-    void getFullNameWithHistoryFirstNames(Method testMethod, Class<?> c) throws Exception {
-        String[] s = {"Li", "Olonech", "Lobova", "Kotova"};
+    void getFullNameWithHistoryTestFirstNames(Method testMethod, Class<?> c) throws Exception {
 
         Map<Integer, String> firstNameTest = new TreeMap<>();
         firstNameTest.put(2020, "Masha");
@@ -210,70 +326,139 @@ public class PersonTest {
         assertEquals("Nastya with unknown last name", res);
 
     }
-//
-//    //getFullNameWithHistory, запрашиваем полную информацию об имени и фамилии на год,
-//    // до которого была только 2 смены имени
-//    @ParameterizedTest
-//    @ArgumentsSource(RunTestsService.class)
-//    void getFullNameWithHistoryFirstNames1(Method testMethod, Class<?> c) throws Exception {
-////        a.changeFirstName(2020,"Masha");
-////        a.changeFirstName(2000,"Nastya");
-////        a.changeFirstName(2010,"Olya");
-////        a.changeLastName(2012,"Lobova");
-////        Assertions.assertEquals("Olya(Nastya) with unknown last name", a.getFullNameWithHistory(2011));
-//        assertEquals(1, 1);
-//    }
-//
-//    //getFullNameWithHistory, запрашиваем полную информацию об имени и фамилии на год,
-//    // до которого была несколько изменений фамилии
-//    @ParameterizedTest
-//    @ArgumentsSource(RunTestsService.class)
-//    void getFullNameWithHistoryFirstNames2(Method testMethod, Class<?> c) throws Exception {
-////        a.changeFirstName(2020,"Masha");
-////        a.changeFirstName(2000,"Nastya");
-////        a.changeFirstName(2010,"Olya");
-////        a.changeLastName(2032,"Lobova");
-////        Assertions.assertEquals("Masha(Olya, Nastya) with unknown last name", a.getFullNameWithHistory(2022));
-//        assertEquals(1, 1);
-//    }
-//
-//    //getFullNameWithHistory, запрашиваем полную информацию об имени и фамилии на год,
-//    // до которого была только 1 смена имени и несколько изменений фамилии
-//    @ParameterizedTest
-//    @ArgumentsSource(RunTestsService.class)
-//    void getFullNameWithHistoryNames(Method testMethod, Class<?> c){
-////        Assertions.assertEquals("Marina Loboda(Maslenik, Li)", b.getFullNameWithHistory(1997));
-//        assertEquals(1, 1);
-//    }
-//
-//    //getFullNameWithHistory, запрашиваем полную информацию об имени и фамилии на год,
-//    // до которого была несколько изменений имени и несколько изменений фамилии
-//    @ParameterizedTest
-//    @ArgumentsSource(RunTestsService.class)
-//    void getFullNameWithHistoryNames1(Method testMethod, Class<?> c){
-////        String s ="Nastya(Marina) Lobova(Olonech, Loboda, Maslenik, Li)";
-////        Assertions.assertEquals(s, b.getFullNameWithHistory(2002));
-//        assertEquals(1, 1);
-//    }
-//
-//    //getFullNameWithHistory, запрашиваем полную информацию об имени и фамилии на год,
-//    // до которого была несколько изменений имени и несколько изменений фамилии
-//    //причем два раза подряд меняли имя на одно и тоже
-//    @ParameterizedTest
-//    @ArgumentsSource(RunTestsService.class)
-//    void getFullNameWithHistoryNames2(Method testMethod, Class<?> c){
-////        String s ="Nastya(Marina) Lobova(Olonech, Loboda, Maslenik, Li)";
-////        Assertions.assertEquals(s, b.getFullNameWithHistory(2007));
-//        assertEquals(1, 1);
-//    }
-//    //getFullNameWithHistory, запрашиваем полную информацию об имени и фамилии на год,
-//    // до которого была несколько изменений имени и несколько изменений фамилии
-//    //причем два раза подряд меняли имя и фамилию на одно и тоже
-//    @ParameterizedTest
-//    @ArgumentsSource(RunTestsService.class)
-//    void getFullNameWithHistoryNames4(Method testMethod, Class<?> c){
-////        String s ="Olya(Nastya, Marina) Lobova(Olonech, Loboda, Maslenik, Li)";
-////        Assertions.assertEquals(s, b.getFullNameWithHistory(2030));
-//        assertEquals(1, 1);
-//    }
+
+    //getFullNameWithHistory, запрашиваем полную информацию об имени и фамилии на год,
+    // до которого была только 2 смены имени
+    @ParameterizedTest
+    @ArgumentsSource(RunTestsService.class)
+    void getFullNameWithHistoryTestFirstNames1(Method testMethod, Class<?> c) throws Exception {
+        Map<Integer, String> firstNameTest = new TreeMap<>();
+        firstNameTest.put(2020, "Masha");
+        firstNameTest.put(2000, "Nastya");
+        firstNameTest.put(2010, "Olya");
+
+        Map<Integer, String> lastNameTest = new TreeMap<>();
+        lastNameTest.put(2012, "Lobova");
+
+        Class[] catClassParams = {Map.class, Map.class};
+        Object tr = c.getConstructor(catClassParams).newInstance(firstNameTest, lastNameTest);
+        String res = (String) testMethod.invoke(tr, 2011);
+        assertEquals("Olya(Nastya) with unknown last name", res);
+    }
+
+    //getFullNameWithHistory, запрашиваем полную информацию об имени и фамилии на год,
+    // до которого была несколько изменений фамилии
+    @ParameterizedTest
+    @ArgumentsSource(RunTestsService.class)
+    void getFullNameWithHistoryTestFirstNames2(Method testMethod, Class<?> c) throws Exception {
+        Map<Integer, String> firstNameTest = new TreeMap<>();
+        firstNameTest.put(2012, "Masha");
+        firstNameTest.put(2000, "Nastya");
+        firstNameTest.put(2010, "Olya");
+        firstNameTest.put(2020, "Kate");
+
+        Map<Integer, String> lastNameTest = new TreeMap<>();
+        lastNameTest.put(2014, "Lobova");
+        lastNameTest.put(2015, "Ivanova");
+
+        Class[] catClassParams = {Map.class, Map.class};
+        Object tr = c.getConstructor(catClassParams).newInstance(firstNameTest, lastNameTest);
+        String res = (String) testMethod.invoke(tr, 2013);
+        assertEquals("Masha(Olya, Nastya) with unknown last name", res);
+    }
+
+    //getFullNameWithHistory, запрашиваем полную информацию об имени и фамилии на год,
+    // до которого была только 1 смена имени и несколько изменений фамилии
+    @ParameterizedTest
+    @ArgumentsSource(RunTestsService.class)
+    void getFullNameWithHistoryTestNames(Method testMethod, Class<?> c) throws Exception {
+        Map<Integer, String> firstNameTest = new TreeMap<>();
+        firstNameTest.put(2012, "Masha");
+        firstNameTest.put(2000, "Marina");
+        firstNameTest.put(2010, "Olya");
+        firstNameTest.put(2020, "Kate");
+
+        Map<Integer, String> lastNameTest = new TreeMap<>();
+        lastNameTest.put(2000, "Maslenik");
+        lastNameTest.put(1990, "Li");
+        lastNameTest.put(2001, "Loboda");
+
+        Class[] catClassParams = {Map.class, Map.class};
+        Object tr = c.getConstructor(catClassParams).newInstance(firstNameTest, lastNameTest);
+        String res = (String) testMethod.invoke(tr, 2001);
+        assertEquals("Marina Loboda(Maslenik, Li)", res);
+    }
+
+    //getFullNameWithHistory, запрашиваем полную информацию об имени и фамилии на год,
+    // до которого была несколько изменений имени и несколько изменений фамилии
+    @ParameterizedTest
+    @ArgumentsSource(RunTestsService.class)
+    void getFullNameWithHistoryTestNames1(Method testMethod, Class<?> c) throws Exception {
+        Map<Integer, String> firstNameTest = new TreeMap<>();
+        firstNameTest.put(2012, "Nastya");
+        firstNameTest.put(2000, "Marina");
+        firstNameTest.put(2030, "Olya");
+
+        Map<Integer, String> lastNameTest = new TreeMap<>();
+        lastNameTest.put(2000, "Maslenik");
+        lastNameTest.put(1990, "Li");
+        lastNameTest.put(2015, "Lobova");
+        lastNameTest.put(2005, "Loboda");
+        lastNameTest.put(2010, "Olonech");
+
+        Class[] catClassParams = {Map.class, Map.class};
+        Object tr = c.getConstructor(catClassParams).newInstance(firstNameTest, lastNameTest);
+        String res = (String) testMethod.invoke(tr, 2015);
+        assertEquals("Nastya(Marina) Lobova(Olonech, Loboda, Maslenik, Li)", res);
+    }
+
+    //getFullNameWithHistory, запрашиваем полную информацию об имени и фамилии на год,
+    // до которого была несколько изменений имени и несколько изменений фамилии
+    //причем два раза подряд меняли имя на одно и тоже
+    @ParameterizedTest
+    @ArgumentsSource(RunTestsService.class)
+    void getFullNameWithHistoryTestNames2(Method testMethod, Class<?> c) throws Exception {
+        Map<Integer, String> firstNameTest = new TreeMap<>();
+        firstNameTest.put(2012, "Nastya");
+        firstNameTest.put(2014, "Nastya");
+        firstNameTest.put(2000, "Marina");
+        firstNameTest.put(2030, "Olya");
+
+        Map<Integer, String> lastNameTest = new TreeMap<>();
+        lastNameTest.put(2000, "Maslenik");
+        lastNameTest.put(1990, "Li");
+        lastNameTest.put(2015, "Lobova");
+        lastNameTest.put(2005, "Loboda");
+        lastNameTest.put(2010, "Olonech");
+
+        Class[] catClassParams = {Map.class, Map.class};
+        Object tr = c.getConstructor(catClassParams).newInstance(firstNameTest, lastNameTest);
+        String res = (String) testMethod.invoke(tr, 2015);
+        assertEquals("Nastya(Marina) Lobova(Olonech, Loboda, Maslenik, Li)", res);
+    }
+
+    //getFullNameWithHistory, запрашиваем полную информацию об имени и фамилии на год,
+    // до которого была несколько изменений имени и несколько изменений фамилии
+    //причем два раза подряд меняли имя и фамилию на одно и тоже
+    @ParameterizedTest
+    @ArgumentsSource(RunTestsService.class)
+    void getFullNameWithHistoryTestNames4(Method testMethod, Class<?> c) throws Exception{
+        Map<Integer, String> firstNameTest = new TreeMap<>();
+        firstNameTest.put(2012, "Nastya");
+        firstNameTest.put(2014, "Nastya");
+        firstNameTest.put(2000, "Marina");
+        firstNameTest.put(2030, "Olya");
+
+        Map<Integer, String> lastNameTest = new TreeMap<>();
+        lastNameTest.put(2000, "Maslenik");
+        lastNameTest.put(1990, "Li");
+        lastNameTest.put(2015, "Lobova");
+        lastNameTest.put(2005, "Loboda");
+        lastNameTest.put(2010, "Lobova");
+
+        Class[] catClassParams = {Map.class, Map.class};
+        Object tr = c.getConstructor(catClassParams).newInstance(firstNameTest, lastNameTest);
+        String res = (String) testMethod.invoke(tr, 2015);
+        assertEquals("Nastya(Marina) Lobova(Loboda, Maslenik, Li)", res);
+    }
 }
