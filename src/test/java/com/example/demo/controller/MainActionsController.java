@@ -57,8 +57,6 @@ public class MainActionsController {
                 }
             }
             createResultTests(tesTResults);
-            // infoButton.setVisible(true);
-            // attempt.setVisible(true);
             TableTestController.tesTResults = tesTResults;
             viewService.openNewView(actionEvent, "/com/example/demo/table-test-view.fxml");
         }
@@ -66,16 +64,13 @@ public class MainActionsController {
 
     @FXML
     protected void goBack(ActionEvent actionEvent) throws Exception {
-
         viewService.openNewView(actionEvent, "/com/example/demo/auth-view.fxml");
-
     }
 
     @FXML
     protected void getInfoAboutTests() {
         textArea.clear();
         resultService.getAllInfoAboutTests(textArea, tesTResults);
-
     }
 
     public void getInfoAboutAttempts(ActionEvent actionEvent) throws IOException {
