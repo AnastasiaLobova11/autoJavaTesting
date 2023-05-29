@@ -45,7 +45,7 @@ public class MainActionsController {
     protected void runTestsFromJarFile(ActionEvent actionEvent) throws Exception {
 
         if (comboBox.getSelectionModel().isEmpty())
-            viewService.newView(310.,195.,"/com/example/demo/error-view.fxml");
+            viewService.newView(310., 195., "/com/example/demo/error-view.fxml");
         else {
             resultService.setUser(user);
             comboBox.getSelectionModel().getSelectedItem();
@@ -53,7 +53,11 @@ public class MainActionsController {
             List<Class<?>> classes = jarFileService.openJarFile(stage);
             for (Class<?> c : classes) {
                 if (c.getName().endsWith("Impl")) {
-                    tesTResults.putAll(runTestsService.runAllTestClassesFromJar(c));
+                    try {
+                        tesTResults.putAll(runTestsService.runAllTestClassesFromJar(c));
+                    }catch (Exception e){
+                        System.out.println(e.getMessage());
+                    }
                 }
             }
             createResultTests(tesTResults);
@@ -76,7 +80,7 @@ public class MainActionsController {
     public void getInfoAboutAttempts(ActionEvent actionEvent) throws IOException {
         TableAttemptController.user = user;
         if (comboBox.getSelectionModel().isEmpty())
-            viewService.newView(310., 195.,"/com/example/demo/error-view.fxml");
+            viewService.newView(310., 195., "/com/example/demo/error-view.fxml");
         else
             viewService.openNewView(actionEvent, "/com/example/demo/table-attempts-view.fxml");
     }

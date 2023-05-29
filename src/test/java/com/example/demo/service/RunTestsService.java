@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import com.example.demo.testClass.BusesTest;
+import com.example.demo.testClass.LettersTest;
 import com.example.demo.testClass.PersonTest;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.provider.Arguments;
@@ -26,7 +28,14 @@ public class RunTestsService implements ArgumentsProvider {
             //case "TriangleImpl": {
             case "PersonImpl": {
                 currTestClass = PersonTest.class;
-                //    currTestClass = MyClass5Test.class;
+                break;
+            }
+            case "LettersImpl": {
+                currTestClass = LettersTest.class;
+                break;
+            }
+            case "BusesImpl": {
+                currTestClass = BusesTest.class;
                 break;
             }
             default: {
