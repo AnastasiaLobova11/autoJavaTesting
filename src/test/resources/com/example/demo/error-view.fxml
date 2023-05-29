@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<VBox alignment="CENTER" prefHeight="193.0" prefWidth="319.0" spacing="10.0"
+      stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.demo.controller.ErrorController">
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+    </padding>
 
-<VBox prefHeight="193.0" prefWidth="319.0" spacing="10.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.ErrorController">
-   <children>
-      <AnchorPane prefHeight="194.0" prefWidth="312.0">
-         <children>
-            <Button graphicTextGap="0.0" layoutX="28.0" layoutY="112.0" mnemonicParsing="false" onAction="#errorMessage" prefHeight="10.0" prefWidth="266.0" styleClass="button-2" text="OK" />
-            <Label layoutX="29.0" layoutY="81.0" styleClass="label-error" text="You don't choose a test case!" />
-            <ImageView fitHeight="47.0" fitWidth="123.0" layoutX="138.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@assets/error-icon.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-   </children>
+    <ImageView fitHeight="47.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@assets/error-icon.png"/>
+        </image>
+    </ImageView>
+    <Label fx:id="errorMessage" styleClass="label-error"/>
+    <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#errorMessage" prefHeight="10.0" prefWidth="266.0"
+            styleClass="button-2" text="OK"/>
+
+
 </VBox>

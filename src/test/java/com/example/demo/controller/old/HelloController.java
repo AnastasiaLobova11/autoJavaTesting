@@ -45,7 +45,7 @@ public class HelloController {
         for (Class<?> c : classes) {
             if (c.getName().endsWith("Impl")) {
                 textArea.appendText(c.getSimpleName() + " Tests\n");
-                tesTResults.putAll(runTestsService.runAllTestClassesFromJar(c));
+//                tesTResults.putAll(runTestsService.runAllTestClassesFromJar(c,""));
             }
         }
         resultService.createResultTests(textArea,tesTResults);

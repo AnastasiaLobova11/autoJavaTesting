@@ -9,6 +9,7 @@ module com.example.demo {
     requires org.junit.platform.commons;
     opens com.example.demo to javafx.fxml, org.hibernate.orm.core;
     exports com.example.demo;
+    exports com.example.demo.exception;
     opens com.example.demo.controller to javafx.fxml;
     exports com.example.demo.controller;
     exports com.example.demo.service;

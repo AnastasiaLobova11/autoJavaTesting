@@ -31,7 +31,7 @@ public class ResultService {
         textArea.appendText(" WAS FAILED " + neg + "\n");
         textArea.appendText("--------------------------------------------------- \n");
 
-        userDao.update(currUser, pos, neg);
+        //userDao.update(currUser, pos, neg);
     }
 
     public void getAllInfoAboutTests(TextArea textArea, Map<String, Boolean> resultTests) {

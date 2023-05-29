@@ -30,10 +30,6 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args)
     {
-
-        Flyway flyway = Flyway.configure().dataSource("jdbc:postgresql://localhost:5432/TestApplication", "postgres", "studentkaufy18").load();
-
-        flyway.migrate();
         Application.launch(args);
 
     }
