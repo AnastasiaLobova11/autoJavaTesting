@@ -75,12 +75,6 @@
             <version>5.0.1.Final</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-            <version>8.5.12</version>
-        </dependency>
-
     </dependencies>
 
     <build>
