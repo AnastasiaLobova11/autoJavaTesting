@@ -31,13 +31,13 @@ public class UserDaoImpl implements UserDao<User> {
     }
 
     @Override
-    public void update(User user, Integer pos, Integer neg) {
+    public void update(User user, String testCase,Integer pos, Integer neg) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            int number = user.getTestAttempt().size() + 1;
-            TestAttempt testAttempt = new TestAttempt(number, pos, neg);
+            int number = user.getTestAttempt().stream().filter(testAttempt ->
+                    testAttempt.getTestCase().equals(testCase)).toList().size()+1;
+            TestAttempt testAttempt = new TestAttempt(number,testCase, pos, neg);
             user.getTestAttempt().add(testAttempt);
             session.getTransaction().begin();
-            user.setTestAttempt(user.getTestAttempt());
             session.saveOrUpdate(user);
             session.getTransaction().commit();
         } catch (Throwable ex) {

@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.User;
 import com.example.demo.entity.UserDaoImpl;
+import com.example.demo.exception.SelectTaskDoesNotMatchTestClassException;
 import com.example.demo.service.JarFileService;
 import com.example.demo.service.RunTestsService;
 import com.example.demo.service.ViewService;
@@ -44,21 +45,31 @@ public class MainActionsController {
     @FXML
     protected void runTestsFromJarFile(ActionEvent actionEvent) throws Exception {
 
-        if (comboBox.getSelectionModel().isEmpty())
-            viewService.newView(310.,195.,"/com/example/demo/error-view.fxml");
-        else {
+        if (comboBox.getSelectionModel().isEmpty()) {
+            viewService.newView(310., 195., "/com/example/demo/error-view.fxml", "You don't choose task!");
+        } else {
             resultService.setUser(user);
-            comboBox.getSelectionModel().getSelectedItem();
+            String selectedTask = comboBox.getSelectionModel().getSelectedItem();
 
             List<Class<?>> classes = jarFileService.openJarFile(stage);
             for (Class<?> c : classes) {
                 if (c.getName().endsWith("Impl")) {
-                    tesTResults.putAll(runTestsService.runAllTestClassesFromJar(c));
+                    try {
+                        Map<String, Boolean> result = runTestsService.runAllTestClassesFromJar(c, selectedTask);
+                        tesTResults.putAll(result);
+                        createResultTests(tesTResults);
+                        TableTestController.tesTResults = tesTResults;
+                        viewService.openNewView(actionEvent, "/com/example/demo/table-test-view.fxml");
+                    } catch (SelectTaskDoesNotMatchTestClassException e) {
+                        viewService.newView(410., 195., "/com/example/demo/error-view.fxml",
+                                "Selected task\n don't match with tested class");
+                    } catch (Exception e) {
+
+                        System.out.println(e.getMessage());
+                    }
                 }
             }
-            createResultTests(tesTResults);
-            TableTestController.tesTResults = tesTResults;
-            viewService.openNewView(actionEvent, "/com/example/demo/table-test-view.fxml");
+
         }
     }
 
@@ -75,16 +86,21 @@ public class MainActionsController {
 
     public void getInfoAboutAttempts(ActionEvent actionEvent) throws IOException {
         TableAttemptController.user = user;
-        if (comboBox.getSelectionModel().isEmpty())
-            viewService.newView(310., 195.,"/com/example/demo/error-view.fxml");
-        else
+
+        if (comboBox.getSelectionModel().isEmpty()) {
+            viewService.newView(310., 195., "/com/example/demo/error-view.fxml", "You don't choose task!");
+
+        } else {
+            TableAttemptController.testCase = comboBox.getSelectionModel().getSelectedItem();
             viewService.openNewView(actionEvent, "/com/example/demo/table-attempts-view.fxml");
+        }
     }
 
     public void initialize() {
         comboBox.getItems().add("Символы строки");
         comboBox.getItems().add("Маршруты автобусов");
         comboBox.getItems().add("Личные данные");
+
     }
 
     public void createResultTests(Map<String, Boolean> resultTests) {
@@ -98,6 +114,7 @@ public class MainActionsController {
 
         }
 
-        userDao.update(user, pos, neg);
+        userDao.update(user, comboBox.getSelectionModel().getSelectedItem(), pos, neg);
     }
+
 }

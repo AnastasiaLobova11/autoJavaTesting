@@ -9,6 +9,7 @@ module com.example.demo {
     requires org.junit.platform.commons;
     opens com.example.demo to javafx.fxml, org.hibernate.orm.core;
     exports com.example.demo;
+    exports com.example.demo.exception;
     opens com.example.demo.controller to javafx.fxml;
     exports com.example.demo.controller;
     exports com.example.demo.service;
@@ -22,7 +23,6 @@ module com.example.demo {
     exports com.example.demo.service.old;
     opens com.example.demo.service.old to javafx.fxml;
     requires jakarta.persistence;
-    requires org.flywaydb.core;
     requires org.hibernate.orm.core;
     requires java.naming;
     requires org.junit.jupiter.params;

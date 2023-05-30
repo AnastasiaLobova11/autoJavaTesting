@@ -9,6 +9,6 @@ public interface UserDao<T> {
 
     void save(T t);
 
-    void update(T t, Integer pos, Integer neg);
+    void update(T t, String testCase,Integer pos, Integer neg);
 
 }

@@ -1,5 +1,8 @@
 package com.example.demo.service;
 
+import com.example.demo.exception.SelectTaskDoesNotMatchTestClassException;
+import com.example.demo.testClass.BusesTest;
+import com.example.demo.testClass.LettersTest;
 import com.example.demo.testClass.PersonTest;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.provider.Arguments;
@@ -18,20 +21,36 @@ public class RunTestsService implements ArgumentsProvider {
     static Class<?> testClass;
     static Method currMethodFromClass;
 
-    public Map<String, Boolean> runAllTestClassesFromJar(Class<?> c) throws Exception {
-        Class<?> currTestClass;
-
+    public Map<String, Boolean> runAllTestClassesFromJar(Class<?> c, String selectedTask) throws SelectTaskDoesNotMatchTestClassException, Exception {
+        Class<?> currTestClass = null;
         //потом так же добавить тут все тестовые классы
         switch (c.getSimpleName()) {
-            //case "TriangleImpl": {
-            case "PersonImpl": {
-                currTestClass = PersonTest.class;
-                //    currTestClass = MyClass5Test.class;
-                break;
+            case "PersonImpl" -> {
+                if (selectedTask.equals("Личные данные")){
+                    currTestClass = PersonTest.class;
+                    break;
+                }
+                else
+                    throw new SelectTaskDoesNotMatchTestClassException("No mathch with selected task type");
             }
-            default: {
-                throw new Exception("This class " + c.getSimpleName() + " doesn't include in tested classes!");
+            case "LettersImpl" -> {
+                if (selectedTask.equals("Символы строки")){
+                    currTestClass = LettersTest.class;
+                    break;
+                }
+                else
+                    throw new SelectTaskDoesNotMatchTestClassException("No mathch with selected task type");
             }
+            case "BusesImpl" -> {
+                if (selectedTask.equals("Маршруты автобусов")) {
+                    currTestClass = BusesTest.class;
+                    break;
+                } else
+                    throw new SelectTaskDoesNotMatchTestClassException("No mathch with selected task type");
+
+            }
+            default -> throw new Exception("This class " + c.getSimpleName() + " doesn't include in tested classes!");
+
         }
 
         Map<String, Boolean> resultTests = runTestClassFromJar(c, currTestClass);
@@ -60,10 +79,6 @@ public class RunTestsService implements ArgumentsProvider {
             if (!needTestMethods.isEmpty()) {
 
                 currMethodFromClass = method;
-                //currClass.getMethod(method.getName(), Integer.class, String.class);
-
-
-                //currMethodFromClass = currClass.getMethod(method.getName());
                 //вызов тестов для текущего метода
                 resultForTestMethod = RunTestsService.runOneMethodTests(currTestClass, needTestMethods);
 

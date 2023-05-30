@@ -11,16 +11,22 @@ public class TestAttempt {
     private long id;
     @Column
     private Integer numberAttempt;
+
+    @Column
+    private String testCase;
     @Column
     private Integer passed;
     @Column
     private Integer fail;
 
+
+
     public TestAttempt(){
     }
 
-    public TestAttempt(Integer numberAttempt, Integer passed, Integer fail) {
+    public TestAttempt(Integer numberAttempt,String testCase, Integer passed, Integer fail) {
         this.numberAttempt = numberAttempt;
+        this.testCase=testCase;
         this.passed = passed;
         this.fail = fail;
     }
@@ -39,6 +45,14 @@ public class TestAttempt {
 
     public void setNumberAttempt(Integer numberAttempt) {
         this.numberAttempt = numberAttempt;
+    }
+
+    public String getTestCase() {
+        return testCase;
+    }
+
+    public void setTestCase(String testCase) {
+        this.testCase = testCase;
     }
 
     public Integer getPassed() {
