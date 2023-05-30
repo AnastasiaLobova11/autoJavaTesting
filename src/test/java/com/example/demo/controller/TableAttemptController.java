@@ -49,14 +49,11 @@ public class TableAttemptController {
     private void initData() {
         List<TestAttempt> list = user.getTestAttempt().stream().filter(testAttempt ->
                 testAttempt.getTestCase().equals(testCase)).toList();
-
         testAttempts.addAll(list);
     }
 
     @FXML
     protected void goBack(ActionEvent actionEvent) throws Exception {
-
         viewService.openNewView(actionEvent, "/com/example/demo/main-actions-view.fxml");
-
     }
 }

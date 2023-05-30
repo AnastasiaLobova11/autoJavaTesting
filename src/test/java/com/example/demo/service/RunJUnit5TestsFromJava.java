@@ -19,11 +19,9 @@ public class RunJUnit5TestsFromJava {
     }
 
     //работает только с одним тестовым методом
-    //надо добавить чтобы имя тестового класса тоже передавалось и не было зашито в коде
     public void runOne() {
         String s=testClassName+"#"+methodName
                 +"(java.lang.reflect.Method,java.lang.Class)";
-        System.out.println(s);
         LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request()
                 .selectors(selectMethod(s))
                 .build();

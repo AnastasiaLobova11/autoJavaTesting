@@ -23,7 +23,6 @@ module com.example.demo {
     exports com.example.demo.service.old;
     opens com.example.demo.service.old to javafx.fxml;
     requires jakarta.persistence;
-    requires org.flywaydb.core;
     requires org.hibernate.orm.core;
     requires java.naming;
     requires org.junit.jupiter.params;
