@@ -6,9 +6,8 @@ public interface UserDao<T> {
 
     List<T> getAllByParameters(Integer course, Integer groupe, String surname);
 
-
     void save(T t);
 
-    void update(T t, String testCase,Integer pos, Integer neg);
+    void update(T t, TestCase testCase, Integer pos, Integer neg);
 
 }

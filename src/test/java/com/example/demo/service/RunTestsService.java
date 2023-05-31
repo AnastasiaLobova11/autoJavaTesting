@@ -1,9 +1,7 @@
 package com.example.demo.service;
 
+import com.example.demo.entity.TestCase;
 import com.example.demo.exception.SelectTaskDoesNotMatchTestClassException;
-import com.example.demo.testClass.BusesTest;
-import com.example.demo.testClass.LettersTest;
-import com.example.demo.testClass.PersonTest;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsProvider;
@@ -21,41 +19,14 @@ public class RunTestsService implements ArgumentsProvider {
     static Class<?> testClass;
     static Method currMethodFromClass;
 
-    public Map<String, Boolean> runAllTestClassesFromJar(Class<?> c, String selectedTask) throws SelectTaskDoesNotMatchTestClassException, Exception {
-        Class<?> currTestClass = null;
-        //потом так же добавить тут все тестовые классы
-        switch (c.getSimpleName()) {
-            case "PersonImpl" -> {
-                if (selectedTask.equals("Личные данные")){
-                    currTestClass = PersonTest.class;
-                    break;
-                }
-                else
-                    throw new SelectTaskDoesNotMatchTestClassException("No mathch with selected task type");
-            }
-            case "LettersImpl" -> {
-                if (selectedTask.equals("Символы строки")){
-                    currTestClass = LettersTest.class;
-                    break;
-                }
-                else
-                    throw new SelectTaskDoesNotMatchTestClassException("No mathch with selected task type");
-            }
-            case "BusesImpl" -> {
-                if (selectedTask.equals("Маршруты автобусов")) {
-                    currTestClass = BusesTest.class;
-                    break;
-                } else
-                    throw new SelectTaskDoesNotMatchTestClassException("No mathch with selected task type");
+    public Map<String, Boolean> runAllTestClassesFromJar(Class<?> c, TestCase selectedTask)throws Exception {
 
-            }
-            default -> throw new Exception("This class " + c.getSimpleName() + " doesn't include in tested classes!");
+        Class<?> currTestClass;
 
-        }
+        currTestClass = Class.forName("com.example.demo.testClass."
+                + selectedTask.getClassName().substring(0, selectedTask.getClassName().indexOf("Impl")) + "Test");
 
-        Map<String, Boolean> resultTests = runTestClassFromJar(c, currTestClass);
-
-        return resultTests;
+        return runTestClassFromJar(c, currTestClass);
     }
 
     public Map<String, Boolean> runTestClassFromJar(Class<?> currClass, Class<?> currTestClass) throws Exception {

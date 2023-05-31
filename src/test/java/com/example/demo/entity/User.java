@@ -4,9 +4,10 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name="User")
-@Table(name="my_user")
+@Entity(name = "User")
+@Table(name = "my_user")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
@@ -21,11 +22,10 @@ public class User {
     @Column(nullable = false)
     private String surname;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<TestAttempt> testAttempt = new ArrayList<>();
 
-    public User(){
+    public User() {
     }
 
     public long getId() {
