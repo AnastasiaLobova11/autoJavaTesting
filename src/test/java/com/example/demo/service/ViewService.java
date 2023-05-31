@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class ViewService {
@@ -29,7 +28,7 @@ public class ViewService {
         hideView(actionEvent);
     }
 
-    public void newView(Double height, Double weight, String viewPath, String labelText) throws IOException {
+    public void newView(Double weight, Double height, String viewPath, String labelText) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(viewPath));
         Parent root1 = fxmlLoader.load();
         Label lblData = (Label) root1.lookup("#errorMessage");
@@ -40,7 +39,7 @@ public class ViewService {
         String s = HelloApplication.class.getResource("assets/testing.png").toExternalForm();
         Image image = new Image(s);
         Stage stage = new Stage();
-        stage.setScene(new Scene(root1, height, weight));
+        stage.setScene(new Scene(root1, weight, height));
         stage.getIcons().add(image);
         stage.show();
     }

@@ -1,9 +1,10 @@
 package com.example.demo.entity;
 
 import javax.persistence.*;
+import java.util.Comparator;
 
-@Entity(name="TestAttempt")
-@Table(name="test_attempt")
+@Entity(name = "TestAttempt")
+@Table(name = "test_attempt")
 public class TestAttempt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,22 +12,24 @@ public class TestAttempt {
     private long id;
     @Column
     private Integer numberAttempt;
-
-    @Column
-    private String testCase;
+    @ManyToOne
+    @JoinColumn(name = "test_case")
+    private TestCase testCase;
     @Column
     private Integer passed;
     @Column
     private Integer fail;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-
-    public TestAttempt(){
+    public TestAttempt() {
     }
 
-    public TestAttempt(Integer numberAttempt,String testCase, Integer passed, Integer fail) {
+    public TestAttempt(Integer numberAttempt, TestCase testCase, Integer passed, Integer fail) {
         this.numberAttempt = numberAttempt;
-        this.testCase=testCase;
+        this.testCase = testCase;
         this.passed = passed;
         this.fail = fail;
     }
@@ -47,11 +50,11 @@ public class TestAttempt {
         this.numberAttempt = numberAttempt;
     }
 
-    public String getTestCase() {
+    public TestCase getTestCase() {
         return testCase;
     }
 
-    public void setTestCase(String testCase) {
+    public void setTestCase(TestCase testCase) {
         this.testCase = testCase;
     }
 
@@ -71,4 +74,13 @@ public class TestAttempt {
         this.fail = fail;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public static final Comparator<TestAttempt> COMPARE_BY_COUNT = Comparator.comparingInt(lhs -> lhs.numberAttempt);
 }

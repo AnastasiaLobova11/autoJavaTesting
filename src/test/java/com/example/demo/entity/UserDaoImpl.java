@@ -1,18 +1,18 @@
 package com.example.demo.entity;
 
-import com.example.demo.HibernateUtil;
 import org.hibernate.Session;
 import java.util.List;
+import static com.example.demo.HibernateUtil.getSessionFactory;
+
 public class UserDaoImpl implements UserDao<User> {
     public List<User> getAllByParameters(Integer course, Integer groupe, String surname) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = getSessionFactory().openSession()) {
             session.getTransaction().begin();
-            List<User> result = session.createQuery("from User where course = :cr and groupa = :gr and surname = :sn", User.class)
+            return session.createQuery("from User where course = :cr and groupa = :gr and surname = :sn", User.class)
                     .setParameter("cr", course)
                     .setParameter("gr", groupe)
                     .setParameter("sn", surname)
                     .list();
-            return result;
         } catch (Throwable ex) {
             ex.printStackTrace();
         }
@@ -21,7 +21,7 @@ public class UserDaoImpl implements UserDao<User> {
 
     @Override
     public void save(User user) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = getSessionFactory().openSession()) {
             session.getTransaction().begin();
             session.save(user);
             session.getTransaction().commit();
@@ -31,20 +31,27 @@ public class UserDaoImpl implements UserDao<User> {
     }
 
     @Override
-    public void update(User user, String testCase,Integer pos, Integer neg) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+    public void update(User user, TestCase testCase, Integer pos, Integer neg) {
+        try (Session session = getSessionFactory().openSession()) {
             int number = user.getTestAttempt().stream().filter(testAttempt ->
-                    testAttempt.getTestCase().equals(testCase)).toList().size()+1;
-            TestAttempt testAttempt = new TestAttempt(number,testCase, pos, neg);
-            user.getTestAttempt().add(testAttempt);
+                    testAttempt.getTestCase().getTitle().equals(testCase.getTitle())).toList().size() + 1;
+
             session.getTransaction().begin();
-            session.saveOrUpdate(user);
+
+            TestAttempt testAttempt = new TestAttempt();
+            testAttempt.setNumberAttempt(number);
+            testAttempt.setFail(neg);
+            testAttempt.setPassed(pos);
+            testAttempt.setTestCase(testCase);
+            testAttempt.setUser(user);
+            user.getTestAttempt().add(testAttempt);
+            testCase.getTestAttempts().add(testAttempt);
+
+
+            session.save(testAttempt);
             session.getTransaction().commit();
         } catch (Throwable ex) {
             ex.printStackTrace();
         }
     }
-
-
-
 }

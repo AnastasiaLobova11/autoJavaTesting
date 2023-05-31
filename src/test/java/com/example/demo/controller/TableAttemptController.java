@@ -1,25 +1,25 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.TestAttempt;
+import com.example.demo.entity.TestCase;
 import com.example.demo.entity.User;
 import com.example.demo.service.ViewService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import static com.example.demo.entity.TestAttempt.COMPARE_BY_COUNT;
 
 public class TableAttemptController {
 
     public static User user;
 
-    public static String testCase;
+    public static TestCase testCase;
     private final ObservableList<TestAttempt> testAttempts = FXCollections.observableArrayList();
     private final ViewService viewService = new ViewService(300., 400.);
     @FXML
@@ -47,9 +47,14 @@ public class TableAttemptController {
     // подготавливаем данные для таблицы
     // вы можете получать их с базы данных
     private void initData() {
-        List<TestAttempt> list = user.getTestAttempt().stream().filter(testAttempt ->
-                testAttempt.getTestCase().equals(testCase)).toList();
-        testAttempts.addAll(list);
+        List<TestAttempt> result = new ArrayList<>();
+        for (TestAttempt testAttempt : user.getTestAttempt()) {
+            if (testAttempt.getTestCase().getTitle().equals(testCase.getTitle())) {
+                result.add(testAttempt);
+            }
+        }
+        result.sort(COMPARE_BY_COUNT);
+        testAttempts.addAll(result);
     }
 
     @FXML

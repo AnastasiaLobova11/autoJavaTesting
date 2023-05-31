@@ -7,8 +7,10 @@ import com.example.demo.service.ViewService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+
 import java.io.IOException;
 import java.util.List;
+
 import static java.lang.Integer.parseInt;
 
 public class AuthController {
@@ -47,6 +49,11 @@ public class AuthController {
 
             viewService.openNewView(actionEvent, "/com/example/demo/main-actions-view.fxml");
         }
+    }
+
+    @FXML
+    public void admin(ActionEvent actionEvent) throws IOException {
+        viewService.openNewView(actionEvent, "/com/example/demo/test-case-admin-view.fxml");
     }
 }
 
