@@ -1,7 +1,10 @@
-package com.example.demo.entity;
+package com.example.demo.utils;
 
+import com.example.demo.entity.TestCase;
 import org.hibernate.Session;
+
 import java.util.List;
+
 import static com.example.demo.HibernateUtil.getSessionFactory;
 
 public class TestCaseDaoImpl implements TestCaseDao {
@@ -37,6 +40,7 @@ public class TestCaseDaoImpl implements TestCaseDao {
         } catch (Throwable ex) {
             ex.printStackTrace();
         }
+
         return null;
     }
 }

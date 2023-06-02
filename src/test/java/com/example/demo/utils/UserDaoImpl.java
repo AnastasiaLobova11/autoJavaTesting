@@ -1,5 +1,8 @@
-package com.example.demo.entity;
+package com.example.demo.utils;
 
+import com.example.demo.entity.TestAttempt;
+import com.example.demo.entity.TestCase;
+import com.example.demo.entity.User;
 import org.hibernate.Session;
 import java.util.List;
 import static com.example.demo.HibernateUtil.getSessionFactory;

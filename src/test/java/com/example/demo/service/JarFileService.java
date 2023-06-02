@@ -16,20 +16,20 @@ public class JarFileService {
 
     public List<Class<?>> openJarFile(Stage stage) {
 
-        FileChooser fileChooser = new FileChooser();
         JarFile jarFile;
+        FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(stage);
         try {
             if (file != null) {
                 jarFile = new JarFile(file);
-                //тут зашита директория для классов: classes
-                List<Class<?>> classes = getClassesFromJar(jarFile, "classes");
-                return classes;
 
+                //Устанавливаем пакет для выбора классов: "classes"
+                return getClassesFromJar(jarFile, "classes");
             }
         } catch (Throwable e) {
             throw new RuntimeException(e);
         }
+
         return null;
     }
 

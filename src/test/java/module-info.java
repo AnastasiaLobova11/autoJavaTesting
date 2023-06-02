@@ -9,7 +9,6 @@ module com.example.demo {
     requires org.junit.platform.commons;
     opens com.example.demo to javafx.fxml, org.hibernate.orm.core;
     exports com.example.demo;
-    exports com.example.demo.exception;
     opens com.example.demo.controller to javafx.fxml;
     exports com.example.demo.controller;
     exports com.example.demo.service;
@@ -18,10 +17,8 @@ module com.example.demo {
     opens com.example.demo.testClass to javafx.fxml, org.junit.platform.commons;
     exports com.example.demo.entity;
     opens com.example.demo.entity to javafx.fxml, org.hibernate.orm.core;
-    exports com.example.demo.controller.old;
-    opens com.example.demo.controller.old to javafx.fxml;
-    exports com.example.demo.service.old;
-    opens com.example.demo.service.old to javafx.fxml;
+    exports com.example.demo.utils;
+    opens com.example.demo.utils to javafx.fxml, org.hibernate.orm.core;
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
     requires java.naming;

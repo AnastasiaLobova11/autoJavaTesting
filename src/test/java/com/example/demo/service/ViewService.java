@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import javax.persistence.EntityManager;
 import java.io.IOException;
 
 public class ViewService {
@@ -35,7 +37,6 @@ public class ViewService {
         if (lblData != null)
             lblData.setText(labelText);
 
-        //Исправить это безобразие
         String s = HelloApplication.class.getResource("assets/testing.png").toExternalForm();
         Image image = new Image(s);
         Stage stage = new Stage();
@@ -48,11 +49,4 @@ public class ViewService {
         ((Node) (actionEvent.getSource())).getScene().getWindow().hide();
     }
 
-    public void setHeight(Double height) {
-        this.height = height;
-    }
-
-    public void setWeight(Double weight) {
-        this.weight = weight;
-    }
 }

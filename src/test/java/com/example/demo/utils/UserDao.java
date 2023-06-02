@@ -1,4 +1,6 @@
-package com.example.demo.entity;
+package com.example.demo.utils;
+
+import com.example.demo.entity.TestCase;
 
 import java.util.List;
 

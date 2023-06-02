@@ -13,9 +13,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.Map;
 
 public class TableTestController {
-    private ObservableList<TesTResult> testResult = FXCollections.observableArrayList();
+    private final ObservableList<TesTResult> testResult = FXCollections.observableArrayList();
 
-    public static  Map<String, Boolean> tesTResults ;
+    public static Map<String, Boolean> tesTResults;
     private final ViewService viewService = new ViewService(300., 400.);
     @FXML
     private TableView<TesTResult> tableResult;
@@ -26,33 +26,33 @@ public class TableTestController {
     @FXML
     private TableColumn<TesTResult, Boolean> resultColumn;
 
-    // инициализируем форму данными
+    /**
+     * Инициализирует форму данными
+     **/
     @FXML
     private void initialize() {
         initData();
         // устанавливаем тип и значение которое должно хранится в колонке
-        idColumn.setCellValueFactory(new PropertyValueFactory<TesTResult, Integer>("number"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<TesTResult, String>("testName"));
-        resultColumn.setCellValueFactory(new PropertyValueFactory<TesTResult, Boolean>("result"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("testName"));
+        resultColumn.setCellValueFactory(new PropertyValueFactory<>("result"));
 
         // заполняем таблицу данными
         tableResult.setItems(testResult);
     }
 
-    // подготавливаем данные для таблицы
-    // вы можете получать их с базы данных
+    /**
+     * Подготавливает данные для таблицы
+     **/
     private void initData() {
-        int i=0;
+        int i = 0;
         for (Map.Entry<String, Boolean> entry : tesTResults.entrySet()) {
             testResult.add(new TesTResult(++i, entry.getKey(), entry.getValue()));
         }
-
     }
 
     @FXML
     protected void goBack(ActionEvent actionEvent) throws Exception {
-
         viewService.openNewView(actionEvent, "/com/example/demo/main-actions-view.fxml");
-
     }
 }

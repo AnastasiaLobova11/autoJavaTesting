@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.TestCase;
-import com.example.demo.entity.TestCaseDao;
-import com.example.demo.entity.TestCaseDaoImpl;
+import com.example.demo.utils.TestCaseDao;
+import com.example.demo.utils.TestCaseDaoImpl;
 import com.example.demo.service.ViewService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.io.IOException;
 import java.util.List;
 

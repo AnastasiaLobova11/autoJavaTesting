@@ -11,17 +11,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import static com.example.demo.entity.TestAttempt.COMPARE_BY_COUNT;
 
 public class TableAttemptController {
-
+    private final ViewService viewService = new ViewService(300., 400.);
     public static User user;
-
     public static TestCase testCase;
     private final ObservableList<TestAttempt> testAttempts = FXCollections.observableArrayList();
-    private final ViewService viewService = new ViewService(300., 400.);
     @FXML
     private TableView<TestAttempt> tableAttempts;
     @FXML
@@ -31,10 +31,14 @@ public class TableAttemptController {
     @FXML
     private TableColumn<TestAttempt, Integer> failedColumn;
 
-    // инициализируем форму данными
+    /**
+     * Инициализирует форму данными
+     **/
     @FXML
     private void initialize() {
+
         initData();
+
         // устанавливаем тип и значение которое должно хранится в колонке
         idColumn.setCellValueFactory(new PropertyValueFactory<>("numberAttempt"));
         passedColumn.setCellValueFactory(new PropertyValueFactory<>("passed"));
@@ -44,10 +48,12 @@ public class TableAttemptController {
         tableAttempts.setItems(testAttempts);
     }
 
-    // подготавливаем данные для таблицы
-    // вы можете получать их с базы данных
+    /**
+     * Подготавливает данные для таблицы
+     **/
     private void initData() {
         List<TestAttempt> result = new ArrayList<>();
+
         for (TestAttempt testAttempt : user.getTestAttempt()) {
             if (testAttempt.getTestCase().getTitle().equals(testCase.getTitle())) {
                 result.add(testAttempt);
