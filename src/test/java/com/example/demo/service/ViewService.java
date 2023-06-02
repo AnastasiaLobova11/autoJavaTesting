@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.HelloApplication;
+import com.example.demo.AutoTestingApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -10,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import javax.persistence.EntityManager;
 import java.io.IOException;
 
 public class ViewService {
@@ -37,7 +36,7 @@ public class ViewService {
         if (lblData != null)
             lblData.setText(labelText);
 
-        String s = HelloApplication.class.getResource("assets/testing.png").toExternalForm();
+        String s = AutoTestingApplication.class.getResource("assets/testing.png").toExternalForm();
         Image image = new Image(s);
         Stage stage = new Stage();
         stage.setScene(new Scene(root1, weight, height));
