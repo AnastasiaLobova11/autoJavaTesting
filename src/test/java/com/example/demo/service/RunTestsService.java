@@ -1,12 +1,10 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.TestCase;
-import com.example.demo.exception.SelectTaskDoesNotMatchTestClassException;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsProvider;
 import org.junit.platform.launcher.listeners.TestExecutionSummary;
-
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,17 +17,17 @@ public class RunTestsService implements ArgumentsProvider {
     static Class<?> testClass;
     static Method currMethodFromClass;
 
-    public Map<String, Boolean> runAllTestClassesFromJar(Class<?> c, TestCase selectedTask)throws Exception {
+    public Map<String, Boolean> runAllTestClassesFromJar(Class<?> c, TestCase selectedTask) throws Exception {
 
         Class<?> currTestClass;
 
         currTestClass = Class.forName("com.example.demo.testClass."
-                + selectedTask.getClassName().substring(0, selectedTask.getClassName().indexOf("Impl")) + "Test");
+                + selectedTask.getClassName() + "Test");
 
         return runTestClassFromJar(c, currTestClass);
     }
 
-    public Map<String, Boolean> runTestClassFromJar(Class<?> currClass, Class<?> currTestClass) throws Exception {
+    public Map<String, Boolean> runTestClassFromJar(Class<?> currClass, Class<?> currTestClass)  {
         Map<String, Boolean> resultTests = new HashMap<>();
 
         //ВАЖНО! сказать чтобы все было в связке с реализацией определенных интерфейсов
