@@ -18,6 +18,9 @@ public class RunTestsService implements ArgumentsProvider {
     static Class<?> testClass;
     static Method currMethodFromClass;
 
+    /**
+     * Получает тестовый класс и запускает процесс тестирования
+     **/
     public Map<String, Boolean> runAllTestClassesFromJar(Class<?> c, TestCase selectedTask) throws Exception {
 
         Class<?> currTestClass;
@@ -25,12 +28,15 @@ public class RunTestsService implements ArgumentsProvider {
         currTestClass = Class.forName("com.example.demo.testClass."
                 + selectedTask.getClassName() + "Test");
 
-        return runTestClassFromJar(c, currTestClass);
+        return runTestForAllMethods(c, currTestClass);
     }
 
-    public Map<String, Boolean> runTestClassFromJar(Class<?> currClass, Class<?> currTestClass) {
+    /**
+     * Получаем для каждого метода тестирующие случаи.
+     * Запускаем их.
+     **/
+    public Map<String, Boolean> runTestForAllMethods(Class<?> currClass, Class<?> currTestClass) {
         List<Method> needTestMethods;
-        Map<String, Boolean> resultForTestMethod;
         Map<String, Boolean> resultTests = new HashMap<>();
 
         testClass = currClass;
@@ -40,24 +46,24 @@ public class RunTestsService implements ArgumentsProvider {
         for (Method method : classMethods) {
 
             //Ищем для текущего метода тестовые случаи
-            needTestMethods = getAllTestMethodFromClass(currTestClass.getDeclaredMethods(), method);
+            needTestMethods = getAllTestCaseForMethod(currTestClass.getDeclaredMethods(), method);
 
             if (!needTestMethods.isEmpty()) {
 
                 currMethodFromClass = method;
 
                 //Вызов тестов для текущего метода
-                resultForTestMethod = RunTestsService.runOneMethodTests(currTestClass, needTestMethods);
-
-                resultTests.putAll(resultForTestMethod);
+                resultTests.putAll(runOneMethodTests(currTestClass, needTestMethods));
                 needTestMethods.clear();
             }
         }
         return resultTests;
     }
 
-    //получаем все тестовые методы для текущего метода из класса
-    public List<Method> getAllTestMethodFromClass(Method[] allTestMethods, Method classMethod) {
+    /**
+     * Получаем все тестовые методы для текущего метода из класса
+     **/
+    public List<Method> getAllTestCaseForMethod(Method[] allTestMethods, Method classMethod) {
         List<Method> needTestMethods = new ArrayList<>();
 
         for (Method test : allTestMethods) {
@@ -72,9 +78,9 @@ public class RunTestsService implements ArgumentsProvider {
 
     public static Map<String, Boolean> runOneMethodTests(Class<?> testClass, List<Method> testMethodList) {
         Map<String, Boolean> resultTests = new HashMap<>();
-
+        RunJUnit5TestsFromJava runJUnit5TestsFromJava = new RunJUnit5TestsFromJava(testClass.getName());
         for (Method testMethod : testMethodList) {
-            RunJUnit5TestsFromJava runJUnit5TestsFromJava = new RunJUnit5TestsFromJava(testMethod.getName(), testClass.getName());
+            runJUnit5TestsFromJava.setMethodName(testMethod.getName());
 
             runJUnit5TestsFromJava.runOne();
             TestExecutionSummary summary = runJUnit5TestsFromJava.listener.getSummary();

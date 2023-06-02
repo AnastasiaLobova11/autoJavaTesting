@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -25,6 +26,13 @@ public class TableTestController {
     private TableColumn<TesTResult, String> nameColumn;
     @FXML
     private TableColumn<TesTResult, Boolean> resultColumn;
+    @FXML
+    Label numberPassed;
+    @FXML
+    Label numberFailed;
+
+    static Integer pos;
+    static Integer neg;
 
     /**
      * Инициализирует форму данными
@@ -39,6 +47,8 @@ public class TableTestController {
 
         // заполняем таблицу данными
         tableResult.setItems(testResult);
+        numberPassed.setText(pos.toString());
+        numberFailed.setText(neg.toString());
     }
 
     /**
@@ -52,7 +62,7 @@ public class TableTestController {
     }
 
     @FXML
-    protected void goBack(ActionEvent actionEvent) throws Exception {
+    protected void goBack(ActionEvent actionEvent){
         viewService.openNewView(actionEvent, "/com/example/demo/main-actions-view.fxml");
     }
 }

@@ -8,7 +8,9 @@ import java.util.List;
 import static com.example.demo.HibernateUtil.getSessionFactory;
 
 public class UserDaoImpl implements UserDao<User> {
-    public List<User> getAllByParameters(Integer course, Integer groupe, String surname) {
+
+    @Override
+    public List<User> getByParameters(Integer course, Integer groupe, String surname) {
         try (Session session = getSessionFactory().openSession()) {
             session.getTransaction().begin();
             return session.createQuery("from User where course = :cr and groupa = :gr and surname = :sn", User.class)

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserDao<T> {
 
-    List<T> getAllByParameters(Integer course, Integer groupe, String surname);
+    List<T> getByParameters(Integer course, Integer groupe, String surname);
 
     void save(T t);
 

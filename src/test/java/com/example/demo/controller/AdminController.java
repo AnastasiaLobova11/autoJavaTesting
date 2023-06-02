@@ -27,7 +27,7 @@ public class AdminController {
     private TableColumn<TestCase, String> testClass;
 
     @FXML
-    protected void addTestCase(ActionEvent actionEvent) throws IOException {
+    protected void addTestCase(ActionEvent actionEvent){
         viewService.newView(350., 195., "/com/example/demo/add-test-case-view.fxml", "");
     }
 
@@ -39,7 +39,7 @@ public class AdminController {
     }
 
     @FXML
-    protected void goBack(ActionEvent actionEvent) throws Exception {
+    protected void goBack(ActionEvent actionEvent){
         viewService.openNewView(actionEvent, "/com/example/demo/auth-view.fxml");
     }
 

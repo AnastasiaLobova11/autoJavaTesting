@@ -23,13 +23,14 @@ public class AuthController {
     TextField surname;
 
     @FXML
-    public void onHelloButtonClick(ActionEvent actionEvent) throws IOException {
+    public void onHelloButtonClick(ActionEvent actionEvent)  {
         User currUser;
         if (course.getText().isEmpty() || group.getText().isEmpty() || surname.getText().isEmpty()) {
-            viewService.newView(310., 195., "/com/example/demo/error-view.fxml", "Fill in all the fields!");
+            viewService.newView(310., 195., "/com/example/demo/error-view.fxml",
+                    "Fill in all the fields!");
         } else {
             try {
-                List<User> result = userDao.getAllByParameters(
+                List<User> result = userDao.getByParameters(
                         parseInt(course.getText()),
                         parseInt(group.getText()),
                         surname.getText());
@@ -55,7 +56,7 @@ public class AuthController {
     }
 
     @FXML
-    public void admin(ActionEvent actionEvent) throws IOException {
+    public void admin(ActionEvent actionEvent) {
         viewService.openNewView(actionEvent, "/com/example/demo/test-case-admin-view.fxml");
     }
 }

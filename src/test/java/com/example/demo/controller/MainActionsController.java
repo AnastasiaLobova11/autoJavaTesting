@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.*;
+import com.example.demo.entity.TestCase;
+import com.example.demo.entity.User;
 import com.example.demo.service.JarFileService;
 import com.example.demo.service.RunTestsService;
 import com.example.demo.service.ViewService;
@@ -12,9 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,27 +30,26 @@ public class MainActionsController {
     private final Map<String, Boolean> tesTResults = new HashMap<>();
     public static User user;
     @FXML
-    public Button selectButton;
-    @FXML
-    public Button infoButton;
-    @FXML
-    public Button attempt;
-    @FXML
     private Stage stage;
-    @FXML
-    private TextArea textArea;
     @FXML
     private ComboBox<TestCase> comboBox;
 
+    /**
+     * Начинает запуск тестирования.
+     * Распаковывает JAR файл.
+     **/
     @FXML
-    protected void runTestsFromJarFile(ActionEvent actionEvent) throws Exception {
+    protected void runTestsFromJarFile(ActionEvent actionEvent) {
 
         if (comboBox.getSelectionModel().isEmpty()) {
             viewService.newView(310., 195., "/com/example/demo/error-view.fxml", "You don't choose task!");
         } else {
-            TestCase selectedTask = comboBox.getSelectionModel().getSelectedItem();
             Map<String, Boolean> result = null;
+
+            TestCase selectedTask = comboBox.getSelectionModel().getSelectedItem();
+
             List<Class<?>> classes = jarFileService.openJarFile(stage);
+
             if (classes == null) {
                 viewService.newView(410., 195., "/com/example/demo/error-view.fxml",
                         "Failed to extract data\n from Jar file!");
@@ -61,15 +59,16 @@ public class MainActionsController {
                 if (c.getSimpleName().equals(selectedTask.getClassName())) {
                     try {
                         result = runTestsService.runAllTestClassesFromJar(c, selectedTask);
-                        tesTResults.putAll(result);
-                        createResultTests(tesTResults);
-                        TableTestController.tesTResults = tesTResults;
+
+                        createResultTests(result);
+                        TableTestController.tesTResults = result;
                         viewService.openNewView(actionEvent, "/com/example/demo/table-test-view.fxml");
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
                 }
             }
+            //Если не нашлось класс с именем соответствующем выбранному заданию
             if (result == null) {
                 viewService.newView(410., 195., "/com/example/demo/error-view.fxml",
                         "Selected task\n don't match with tested class");
@@ -78,11 +77,11 @@ public class MainActionsController {
     }
 
     @FXML
-    protected void goBack(ActionEvent actionEvent) throws Exception {
+    protected void goBack(ActionEvent actionEvent) {
         viewService.openNewView(actionEvent, "/com/example/demo/auth-view.fxml");
     }
 
-    public void getInfoAboutAttempts(ActionEvent actionEvent) throws IOException {
+    public void getInfoAboutAttempts(ActionEvent actionEvent){
         TableAttemptController.user = user;
 
         if (comboBox.getSelectionModel().isEmpty()) {
@@ -111,5 +110,8 @@ public class MainActionsController {
 
         }
         userDao.update(user, comboBox.getSelectionModel().getSelectedItem(), pos, neg);
+        TableTestController.pos=pos;
+        TableTestController.neg=neg;
+
     }
 }

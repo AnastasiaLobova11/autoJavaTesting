@@ -11,11 +11,11 @@ import static org.junit.platform.engine.discovery.DiscoverySelectors.selectMetho
 
 public class RunJUnit5TestsFromJava {
     public SummaryGeneratingListener listener = new SummaryGeneratingListener();
-    private final String methodName;
+
+    private  String methodName;
     private final String testClassName;
 
-    public RunJUnit5TestsFromJava(String methodName, String testClassName) {
-        this.methodName = methodName;
+    public RunJUnit5TestsFromJava(String testClassName) {
         this.testClassName = testClassName;
     }
 
@@ -32,5 +32,8 @@ public class RunJUnit5TestsFromJava {
         TestPlan testPlan = launcher.discover(request);
         launcher.registerTestExecutionListeners(listener);
         launcher.execute(request);
+    }
+    public void setMethodName(String methodName) {
+        this.methodName = methodName;
     }
 }

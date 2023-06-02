@@ -10,7 +10,7 @@
     <VBox alignment="CENTER" prefHeight="357.0" prefWidth="319.0" spacing="30.0">
       <Button mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="86.0" styleClass="button-2" text="Go Back"/>
         <ComboBox fx:id="comboBox" nodeOrientation="LEFT_TO_RIGHT" prefHeight="0.0" prefWidth="154.0" promptText="Test cases" styleClass="label" />
-        <Button fx:id="selectButton" onAction="#runTestsFromJarFile" prefHeight="26.0" prefWidth="85.0" styleClass="button-2" text="Test" />
+        <Button onAction="#runTestsFromJarFile" prefHeight="26.0" prefWidth="85.0" styleClass="button-2" text="Test" />
         <Button onAction="#getInfoAboutAttempts" styleClass="button-2" text="See attempts" />
       <opaqueInsets>
          <Insets />

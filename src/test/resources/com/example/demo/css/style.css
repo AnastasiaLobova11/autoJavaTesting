@@ -34,3 +34,11 @@
     -fx-opacity: 1;
     -fx-text-alignment: center;
 }
+
+.label-result{
+    -fx-font-size: 15pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: rgba(171, 4, 4, 0.7);
+    -fx-opacity: 1;
+    -fx-text-alignment: center;
+}
