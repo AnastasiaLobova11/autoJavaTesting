@@ -17,8 +17,8 @@ module com.example.demo {
     opens com.project.testapplication.testClass to javafx.fxml, org.junit.platform.commons;
     exports com.project.testapplication.entity;
     opens com.project.testapplication.entity to javafx.fxml, org.hibernate.orm.core;
-    exports com.project.testapplication.utils;
-    opens com.project.testapplication.utils to javafx.fxml, org.hibernate.orm.core;
+    exports com.project.testapplication.dao;
+    opens com.project.testapplication.dao to javafx.fxml, org.hibernate.orm.core;
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
     requires java.naming;

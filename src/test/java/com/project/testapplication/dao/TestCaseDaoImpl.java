@@ -1,4 +1,4 @@
-package com.project.testapplication.utils;
+package com.project.testapplication.dao;
 
 import com.project.testapplication.entity.TestCase;
 import org.hibernate.Session;

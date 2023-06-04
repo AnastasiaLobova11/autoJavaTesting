@@ -2,7 +2,7 @@ package com.project.testapplication.controller;
 
 import com.project.testapplication.entity.User;
 import com.project.testapplication.service.ViewService;
-import com.project.testapplication.utils.UserDaoImpl;
+import com.project.testapplication.dao.UserDaoImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
