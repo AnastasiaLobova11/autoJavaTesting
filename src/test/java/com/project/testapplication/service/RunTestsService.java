@@ -25,7 +25,7 @@ public class RunTestsService implements ArgumentsProvider {
 
         Class<?> currTestClass;
 
-        currTestClass = Class.forName("com.example.demo.testClass."
+        currTestClass = Class.forName("com.project.testapplication.testClass."
                 + selectedTask.getClassName() + "Test");
 
         return runTestForAllMethods(c, currTestClass);

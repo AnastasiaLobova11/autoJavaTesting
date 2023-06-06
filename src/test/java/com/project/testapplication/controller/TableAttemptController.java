@@ -65,6 +65,6 @@ public class TableAttemptController {
 
     @FXML
     protected void goBack(ActionEvent actionEvent){
-        viewService.openNewView(actionEvent, "/com/project/testapplication/view/main-actions-view.fxml");
+        viewService.openNewView(actionEvent, "/com/project/testapplication/main-actions-view.fxml");
     }
 }

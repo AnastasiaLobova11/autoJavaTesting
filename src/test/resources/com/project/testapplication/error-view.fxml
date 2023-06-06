@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 <VBox alignment="CENTER" prefHeight="193.0" prefWidth="319.0" spacing="10.0"
-      stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+      stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.project.testapplication.controller.ErrorController">
 
     <padding>
@@ -15,7 +15,7 @@
     </padding>
 
     <ImageView fitHeight="47.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
-        <Image url="@../assets/error-icon.png"/>
+        <Image url="@assets/error-icon.png"/>
     </ImageView>
     <Label fx:id="errorMessage" styleClass="label-error"/>
     <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#errorMessage" prefHeight="10.0" prefWidth="266.0"

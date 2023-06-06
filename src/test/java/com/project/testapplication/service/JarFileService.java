@@ -31,7 +31,7 @@ public class JarFileService {
                 return getClassesFromJar(jarFile, "classes");
             }
         } catch (Throwable e) {
-            viewService.newView(410., 195., "/com/project/testapplication/view/error-view.fxml",
+            viewService.newView(410., 195., "/com/project/testapplication/error-view.fxml",
                     "Error occurred \nwhile opening Jar file!");
             e.printStackTrace();
         }

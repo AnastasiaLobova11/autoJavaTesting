@@ -41,7 +41,7 @@ public class MainActionsController {
     protected void runTestsFromJarFile(ActionEvent actionEvent) {
 
         if (comboBox.getSelectionModel().isEmpty()) {
-            viewService.newView(310., 195., "/com/project/testapplication/view/error-view.fxml", "You don't choose task!");
+            viewService.newView(310., 195., "/com/project/testapplication/error-view.fxml", "You don't choose task!");
         } else {
             Map<String, Boolean> result = null;
 
@@ -50,7 +50,7 @@ public class MainActionsController {
             List<Class<?>> classes = jarFileService.openJarFile(stage);
 
             if (classes == null) {
-                viewService.newView(410., 195., "/com/project/testapplication/view/error-view.fxml",
+                viewService.newView(410., 195., "/com/project/testapplication/error-view.fxml",
                         "Failed to extract data\n from Jar file!");
                 return;
             }
@@ -61,7 +61,7 @@ public class MainActionsController {
 
                         createResultTests(result);
                         TableTestController.tesTResults = result;
-                        viewService.openNewView(actionEvent, "/com/project/testapplication/view/table-test-view.fxml");
+                        viewService.openNewView(actionEvent, "/com/project/testapplication/table-test-view.fxml");
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -69,7 +69,7 @@ public class MainActionsController {
             }
             //Если не нашлось класс с именем соответствующем выбранному заданию
             if (result == null) {
-                viewService.newView(410., 195., "/com/project/testapplication/view/error-view.fxml",
+                viewService.newView(410., 195., "/com/project/testapplication/error-view.fxml",
                         "Selected task\n don't match with tested class");
             }
         }
@@ -77,18 +77,18 @@ public class MainActionsController {
 
     @FXML
     protected void goBack(ActionEvent actionEvent) {
-        viewService.openNewView(actionEvent, "/com/project/testapplication/view/auth-view.fxml");
+        viewService.openNewView(actionEvent, "/com/project/testapplication/auth-view.fxml");
     }
 
     public void getInfoAboutAttempts(ActionEvent actionEvent){
         TableAttemptController.user = user;
 
         if (comboBox.getSelectionModel().isEmpty()) {
-            viewService.newView(310., 195., "/com/project/testapplication/view/error-view.fxml", "You don't choose task!");
+            viewService.newView(310., 195., "/com/project/testapplication/error-view.fxml", "You don't choose task!");
 
         } else {
             TableAttemptController.testCase = comboBox.getSelectionModel().getSelectedItem();
-            viewService.openNewView(actionEvent, "/com/project/testapplication/view/table-attempts-view.fxml");
+            viewService.openNewView(actionEvent, "/com/project/testapplication/table-attempts-view.fxml");
         }
     }
 

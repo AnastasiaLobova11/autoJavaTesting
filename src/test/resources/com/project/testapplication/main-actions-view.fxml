@@ -5,7 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="359.0" prefWidth="319.0" spacing="10.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19"
+<VBox prefHeight="359.0" prefWidth="319.0" spacing="10.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/19"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.testapplication.controller.MainActionsController">
     <VBox alignment="CENTER" prefHeight="357.0" prefWidth="319.0" spacing="30.0">
       <Button mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="86.0" styleClass="button-2" text="Go Back"/>

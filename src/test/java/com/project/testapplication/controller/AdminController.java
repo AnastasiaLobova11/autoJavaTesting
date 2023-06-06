@@ -27,7 +27,7 @@ public class AdminController {
 
     @FXML
     protected void addTestCase(ActionEvent actionEvent){
-        viewService.newView(350., 195., "/com/project/testapplication/view/add-test-case-view.fxml", "");
+        viewService.newView(350., 195., "/com/project/testapplication/add-test-case-view.fxml", "");
     }
 
     @FXML
@@ -39,7 +39,7 @@ public class AdminController {
 
     @FXML
     protected void goBack(ActionEvent actionEvent){
-        viewService.openNewView(actionEvent, "/com/project/testapplication/view/auth-view.fxml");
+        viewService.openNewView(actionEvent, "/com/project/testapplication/auth-view.fxml");
     }
 
     @FXML

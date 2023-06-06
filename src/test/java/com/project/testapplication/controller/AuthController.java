@@ -25,7 +25,7 @@ public class AuthController {
     public void onHelloButtonClick(ActionEvent actionEvent)  {
         User currUser;
         if (course.getText().isEmpty() || group.getText().isEmpty() || surname.getText().isEmpty()) {
-            viewService.newView(310., 195., "/com/project/testapplication/view/error-view.fxml",
+            viewService.newView(310., 195., "/com/project/testapplication/error-view.fxml",
                     "Fill in all the fields!");
         } else {
             try {
@@ -45,9 +45,9 @@ public class AuthController {
 
                 MainActionsController.user = currUser;
 
-                viewService.openNewView(actionEvent, "/com/project/testapplication/view/main-actions-view.fxml");
+                viewService.openNewView(actionEvent, "/com/project/testapplication/main-actions-view.fxml");
             }catch (NumberFormatException e){
-                viewService.newView(310., 195., "/com/project/testapplication/view/error-view.fxml",
+                viewService.newView(310., 195., "/com/project/testapplication/error-view.fxml",
                         "Course and Group\n must be Integer!");
                 e.printStackTrace();
             }
@@ -56,7 +56,7 @@ public class AuthController {
 
     @FXML
     public void admin(ActionEvent actionEvent) {
-        viewService.openNewView(actionEvent, "/com/project/testapplication/view/test-case-admin-view.fxml");
+        viewService.openNewView(actionEvent, "/com/project/testapplication/test-case-admin-view.fxml");
     }
 }
 
