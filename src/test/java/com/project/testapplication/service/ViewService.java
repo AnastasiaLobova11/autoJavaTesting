@@ -41,6 +41,7 @@ public class ViewService {
             Image image = new Image(s);
             Stage stage = new Stage();
             stage.setScene(new Scene(root1, weight, height));
+            stage.setTitle("AutoTesting");
             stage.getIcons().add(image);
             stage.show();
         } catch (IOException e) {

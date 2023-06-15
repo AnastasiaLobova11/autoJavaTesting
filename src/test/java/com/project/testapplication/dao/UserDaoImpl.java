@@ -5,19 +5,19 @@ import com.project.testapplication.entity.TestCase;
 import com.project.testapplication.entity.User;
 import org.hibernate.Session;
 import java.util.List;
+
 import static com.project.testapplication.HibernateUtil.getSessionFactory;
 
 public class UserDaoImpl implements UserDao<User> {
 
     @Override
-    public List<User> getByParameters(Integer course, Integer groupe, String surname) {
+    public List getByParameters(Integer course, Integer groupe, String surname) {
         try (Session session = getSessionFactory().openSession()) {
             session.getTransaction().begin();
-            return session.createQuery("from User where course = :cr and groupa = :gr and surname = :sn", User.class)
+            return session.createQuery("from User where course = :cr and groupa = :gr and surname = :sn")
                     .setParameter("cr", course)
                     .setParameter("gr", groupe)
-                    .setParameter("sn", surname)
-                    .list();
+                    .setParameter("sn", surname).list();
         } catch (Throwable ex) {
             ex.printStackTrace();
         }

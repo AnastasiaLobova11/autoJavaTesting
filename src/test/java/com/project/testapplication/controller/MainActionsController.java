@@ -41,17 +41,24 @@ public class MainActionsController {
     protected void runTestsFromJarFile(ActionEvent actionEvent) {
 
         if (comboBox.getSelectionModel().isEmpty()) {
-            viewService.newView(310., 195., "/com/project/testapplication/error-view.fxml", "You don't choose task!");
+            viewService.newView(310., 195., "/com/project/testapplication/error-view.fxml", "Задание не выбранно!");
         } else {
             Map<String, Boolean> result = null;
+            List<Class<?>> classes;
 
             TestCase selectedTask = comboBox.getSelectionModel().getSelectedItem();
 
-            List<Class<?>> classes = jarFileService.openJarFile(stage);
+            try {
+               classes = jarFileService.openJarFile(stage);
+            }catch (Exception e){
+                viewService.newView(410., 195., "/com/project/testapplication/error-view.fxml",
+                        "Произошла ошибка \nпри открытии Jar файла!");
+                return;
+            }
 
             if (classes == null) {
                 viewService.newView(410., 195., "/com/project/testapplication/error-view.fxml",
-                        "Failed to extract data\n from Jar file!");
+                        "Ошибка извлечения данных\nиз Jar файла!");
                 return;
             }
             for (Class<?> c : classes) {
@@ -70,7 +77,7 @@ public class MainActionsController {
             //Если не нашлось класс с именем соответствующем выбранному заданию
             if (result == null) {
                 viewService.newView(410., 195., "/com/project/testapplication/error-view.fxml",
-                        "Selected task\n don't match with tested class");
+                        "В архиве нет файла\n с необходимым названием!");
             }
         }
     }
@@ -84,7 +91,7 @@ public class MainActionsController {
         TableAttemptController.user = user;
 
         if (comboBox.getSelectionModel().isEmpty()) {
-            viewService.newView(310., 195., "/com/project/testapplication/error-view.fxml", "You don't choose task!");
+            viewService.newView(310., 195., "/com/project/testapplication/error-view.fxml", "Задание не выбрано!");
 
         } else {
             TableAttemptController.testCase = comboBox.getSelectionModel().getSelectedItem();

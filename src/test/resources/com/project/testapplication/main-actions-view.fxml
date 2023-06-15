@@ -8,10 +8,10 @@
 <VBox prefHeight="359.0" prefWidth="319.0" spacing="10.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/19"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.testapplication.controller.MainActionsController">
     <VBox alignment="CENTER" prefHeight="357.0" prefWidth="319.0" spacing="30.0">
-      <Button mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="86.0" styleClass="button-2" text="Go Back"/>
-        <ComboBox fx:id="comboBox" nodeOrientation="LEFT_TO_RIGHT" prefHeight="0.0" prefWidth="154.0" promptText="Test cases" styleClass="label" />
-        <Button onAction="#runTestsFromJarFile" prefHeight="26.0" prefWidth="85.0" styleClass="button-2" text="Test" />
-        <Button onAction="#getInfoAboutAttempts" styleClass="button-2" text="See attempts" />
+      <Button mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="86.0" styleClass="button-2" text="Назад"/>
+        <ComboBox fx:id="comboBox" nodeOrientation="LEFT_TO_RIGHT" prefHeight="0.0" prefWidth="154.0" promptText="Задание" styleClass="label" />
+        <Button onAction="#runTestsFromJarFile" prefHeight="26.0" prefWidth="85.0" styleClass="button-2" text="Тестировать" />
+        <Button onAction="#getInfoAboutAttempts" styleClass="button-2" text="Попытки" />
       <opaqueInsets>
          <Insets />
       </opaqueInsets>

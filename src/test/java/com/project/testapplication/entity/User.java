@@ -69,4 +69,11 @@ public class User {
         this.testAttempt = testAttempt;
     }
 
+    @Override
+    public String toString() {
+        return "Студент: " +
+                 course +
+                "." + groupa +
+                " " + surname;
+    }
 }

@@ -26,7 +26,7 @@ public class AuthController {
         User currUser;
         if (course.getText().isEmpty() || group.getText().isEmpty() || surname.getText().isEmpty()) {
             viewService.newView(310., 195., "/com/project/testapplication/error-view.fxml",
-                    "Fill in all the fields!");
+                    "Заполните все поля!");
         } else {
             try {
                 List<User> result = userDao.getByParameters(
@@ -48,7 +48,7 @@ public class AuthController {
                 viewService.openNewView(actionEvent, "/com/project/testapplication/main-actions-view.fxml");
             }catch (NumberFormatException e){
                 viewService.newView(310., 195., "/com/project/testapplication/error-view.fxml",
-                        "Course and Group\n must be Integer!");
+                        "Курс и Группа\nцелочисленные значения!");
                 e.printStackTrace();
             }
         }

@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -31,6 +32,12 @@ public class TableAttemptController {
     @FXML
     private TableColumn<TestAttempt, Integer> failedColumn;
 
+    @FXML
+    private Label student;
+    @FXML
+    private Label testTask;
+
+
     /**
      * Инициализирует форму данными
      **/
@@ -43,6 +50,8 @@ public class TableAttemptController {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("numberAttempt"));
         passedColumn.setCellValueFactory(new PropertyValueFactory<>("passed"));
         failedColumn.setCellValueFactory(new PropertyValueFactory<>("fail"));
+        testTask.setText("Задание: "+testCase.getTitle());
+        student.setText(user.toString());
 
         // заполняем таблицу данными
         tableAttempts.setItems(testAttempts);

@@ -8,7 +8,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class AutoTestingApplication extends Application {
-
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -17,6 +16,7 @@ public class AutoTestingApplication extends Application {
         String s = getClass().getResource("assets/testing.png").toExternalForm();
         Image image = new Image(s);
         primaryStage.getIcons().add(image);
+        primaryStage.setTitle("AutoTesting");
         primaryStage.show();
     }
 

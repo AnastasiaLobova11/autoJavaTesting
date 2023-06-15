@@ -11,9 +11,9 @@ public class TestCase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private long id;
-    @Column(unique = true)
-    private String title;
     @Column
+    private String title;
+    @Column(unique = true)
     private String className;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "testCase", fetch = FetchType.EAGER)
     private List<TestAttempt> testAttempts = new ArrayList<>();

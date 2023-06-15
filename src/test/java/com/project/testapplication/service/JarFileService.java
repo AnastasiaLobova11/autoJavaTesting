@@ -4,6 +4,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -17,7 +18,7 @@ public class JarFileService {
 
     private final ViewService viewService = new ViewService(300., 400.);
 
-    public List<Class<?>> openJarFile(Stage stage)  {
+    public List<Class<?>> openJarFile(Stage stage) throws IOException, ClassNotFoundException {
 
         JarFile jarFile;
         FileChooser fileChooser = new FileChooser();
@@ -27,15 +28,13 @@ public class JarFileService {
             if (file != null) {
                 jarFile = new JarFile(file);
 
-                //Устанавливаем пакет для выбора классов: "classes"
                 return getClassesFromJar(jarFile, "classes");
             }
         } catch (Throwable e) {
-            viewService.newView(410., 195., "/com/project/testapplication/error-view.fxml",
-                    "Error occurred \nwhile opening Jar file!");
-            e.printStackTrace();
-        }
 
+            e.printStackTrace();
+            throw e;
+        }
         return null;
     }
 

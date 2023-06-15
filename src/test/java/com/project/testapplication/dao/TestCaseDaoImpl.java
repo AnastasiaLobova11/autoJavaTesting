@@ -31,12 +31,10 @@ public class TestCaseDaoImpl implements TestCaseDao {
     }
 
     @Override
-    public List<TestCase> getAll() {
+    public List getAll() {
         try (Session session = getSessionFactory().openSession()) {
             session.getTransaction().begin();
-            List<TestCase> testCaseList = session.createQuery("from TestCase", TestCase.class).list();
-            session.getTransaction().commit();
-            return testCaseList;
+            return session.createQuery("from TestCase").list();
         } catch (Throwable ex) {
             ex.printStackTrace();
         }
