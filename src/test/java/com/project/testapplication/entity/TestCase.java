@@ -13,7 +13,7 @@ public class TestCase {
     private long id;
     @Column
     private String title;
-    @Column(unique = true)
+    @Column(name = "class_name",unique = true)
     private String className;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "testCase", fetch = FetchType.EAGER)
     private List<TestAttempt> testAttempts = new ArrayList<>();

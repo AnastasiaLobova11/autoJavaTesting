@@ -10,7 +10,7 @@ public class TestAttempt {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private long id;
-    @Column
+    @Column(name = "number_attempt")
     private Integer numberAttempt;
     @ManyToOne
     @JoinColumn(name = "test_case")
