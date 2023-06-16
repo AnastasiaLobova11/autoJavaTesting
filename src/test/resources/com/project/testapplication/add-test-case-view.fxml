@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="335.0" spacing="10.0" stylesheets="@css/style.css"
+      xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.project.testapplication.controller.AddTestCaseController">
+    <padding>
+        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0"/>
+    </padding>
+    <Label styleClass="label-main" text="Введите тестируемое задание:"/>
+    <GridPane hgap="10" vgap="10">
+        <padding>
+            <Insets bottom="10" left="10" right="10" top="10"/>
+        </padding>
+
+        <Label styleClass="label" text="Название:" GridPane.columnIndex="0" GridPane.halignment="RIGHT"
+               GridPane.rowIndex="1"/>
+        <Label styleClass="label" text="Тестируемый класс:" GridPane.columnIndex="0" GridPane.halignment="RIGHT"
+               GridPane.rowIndex="2"/>
+        <TextField fx:id="title" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.halignment="LEFT" />
+        <TextField fx:id="testClass" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.halignment="LEFT"/>
+
+        <columnConstraints>
+            <ColumnConstraints/>
+            <ColumnConstraints/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints/>
+            <RowConstraints/>
+            <RowConstraints/>
+        </rowConstraints>
+    </GridPane>
+    <Button onAction="#saveTestCase" styleClass="button-2" text="Сохранить"/>
+</VBox>

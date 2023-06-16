@@ -1,0 +1,52 @@
+.label{
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 15px;
+}
+
+.label-main{
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 19px;
+}
+.text-field{
+    -fx-background-color: #76b7b2;
+}
+.button-name{
+    -fx-background-color: #817e7e;
+    -fx-text-fill: #ffffff;
+}
+.button-2{
+    -fx-background-color: #817e7e;
+    -fx-text-fill: #ffffdf;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: #95cbc6;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: lightgray;
+}
+
+.label-error{
+    -fx-font-size: 15pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #76b7b2;
+    -fx-opacity: 1;
+    -fx-text-alignment: center;
+}
+
+.label-result{
+    -fx-font-size: 15pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: rgba(171, 4, 4, 0.7);
+    -fx-opacity: 1;
+    -fx-text-alignment: center;
+}
+
+.label-result-min{
+    -fx-font-size: 13pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: rgba(171, 4, 4, 0.7);
+    -fx-opacity: 1;
+    -fx-text-alignment: center;
+}
