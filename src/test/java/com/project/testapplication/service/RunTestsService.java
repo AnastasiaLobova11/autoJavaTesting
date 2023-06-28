@@ -38,20 +38,13 @@ public class RunTestsService implements ArgumentsProvider {
     public Map<String, Boolean> runTestForAllMethods(Class<?> currClass, Class<?> currTestClass) {
         List<Method> needTestMethods;
         Map<String, Boolean> resultTests = new HashMap<>();
-
         testClass = currClass;
-
         Method[] classMethods = currClass.getDeclaredMethods();
-
         for (Method method : classMethods) {
-
             //Ищем для текущего метода тестовые случаи
             needTestMethods = getAllTestCaseForMethod(currTestClass.getDeclaredMethods(), method);
-
             if (!needTestMethods.isEmpty()) {
-
                 currMethodFromClass = method;
-
                 //Вызов тестов для текущего метода
                 resultTests.putAll(runOneMethodTests(currTestClass, needTestMethods));
                 needTestMethods.clear();

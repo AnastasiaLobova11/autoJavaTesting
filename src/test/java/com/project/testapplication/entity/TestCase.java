@@ -25,6 +25,11 @@ public class TestCase {
         this.title = title;
         this.className = className;
     }
+    public TestCase(long id, String title, String className) {
+        this.id=id;
+        this.title = title;
+        this.className = className;
+    }
 
     public long getId() {
         return id;

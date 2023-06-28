@@ -28,6 +28,13 @@ public class User {
     public User() {
     }
 
+    public User(long id, Integer course, Integer groupa, String surname) {
+        this.id = id;
+        this.course = course;
+        this.groupa = groupa;
+        this.surname = surname;
+    }
+
     public long getId() {
         return id;
     }
