@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 import static java.lang.Integer.parseInt;
 
@@ -29,20 +31,21 @@ public class AuthController {
                     "Заполните все поля!");
         } else {
             try {
-                List<User> result = userDao.getByParameters(
+                Optional<User> result = userDao.getByParameters(
                         parseInt(course.getText()),
                         parseInt(group.getText()),
                         surname.getText());
-
-                if (result == null || result.isEmpty()) {
+                if (result.isPresent()) {
+                    currUser= result.get();
+                } else{
                     currUser = new User();
                     currUser.setCourse(parseInt(course.getText()));
                     currUser.setGroupa(parseInt(group.getText()));
                     currUser.setSurname(surname.getText());
                     userDao.save(currUser);
-                } else
-                    currUser = result.get(0);
+                }
 
+                currUser.setId(userDao.getUserId(currUser));
                 MainActionsController.user = currUser;
 
                 viewService.openNewView(actionEvent, "/com/project/testapplication/main-actions-view.fxml");

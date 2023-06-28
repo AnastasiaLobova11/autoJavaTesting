@@ -3,10 +3,11 @@ package com.project.testapplication.dao;
 import com.project.testapplication.entity.TestCase;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserDao<T> {
 
-    List<T> getByParameters(Integer course, Integer groupe, String surname);
+    Optional<T> getByParameters(Integer course, Integer groupe, String surname);
 
     void save(T t);
 
